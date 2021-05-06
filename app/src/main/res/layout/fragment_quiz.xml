@@ -1,18 +1,19 @@
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.jslee.retrofittesting.quiz.QuizViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/quiz_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".quiz.QuizFragment">
 
         <TextView
             android:id="@+id/quiz_text"
@@ -29,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="선택지 1"
+            android:onClick="@{() -> viewModel.onPlusScore()}"
             app:layout_constraintBottom_toTopOf="@+id/checkBox2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,21 +40,32 @@
             android:id="@+id/checkBox2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onPlusScore()}"
+
             android:text="선택지 2"
-            app:layout_constraintBottom_toTopOf="@+id/quiz_btn"
+            app:layout_constraintBottom_toTopOf="@+id/now_score_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkBox1" />
-
+        <TextView
+            android:id="@+id/now_score_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{@string/score_format(viewModel.score)}"
+            app:layout_constraintBottom_toTopOf="@+id/quiz_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
         <Button
             android:id="@+id/quiz_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="선택 완료!!"
+            android:onClick="@{() -> viewModel.onSelectFinish()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+            app:layout_constraintTop_toBottomOf="@+id/now_score_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

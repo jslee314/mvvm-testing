@@ -10,13 +10,11 @@ class SuccessViewModel(userScore: Int) : ViewModel()  {
 
 
     init {
-        Log.d("jjslee", "SuccessViewModel created!")
     }
 
 
     override fun onCleared() {
         super.onCleared()
-        Log.i("jjslee", "SuccessViewModel destroyed!")
     }
 
 }
