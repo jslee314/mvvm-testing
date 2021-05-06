@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="선택 완료!!"
-            android:onClick="@{() -> viewModel.onSelectFinish()}"
+            android:onClick="@{() -> viewModel.onClickedFinish()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

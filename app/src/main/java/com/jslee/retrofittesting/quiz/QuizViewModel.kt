@@ -19,9 +19,9 @@ class QuizViewModel: ViewModel()  {
     * @내용 : 선택 완료 버튼 (캡슐화)
     * @작성자 : 이재선
     **/
-    private val _eventSelectFinish = MutableLiveData<Boolean>()
-    val eventSelectFinish:LiveData<Boolean>
-        get() = _eventSelectFinish
+    private val _eventClickFinish = MutableLiveData<Boolean>()
+    val eventClickFinish:LiveData<Boolean>
+        get() = _eventClickFinish
 
 
     init {
@@ -38,8 +38,8 @@ class QuizViewModel: ViewModel()  {
 
     }
 
-    fun onSelectFinish(){
-        _eventSelectFinish.value = true
+    fun onClickedFinish(){
+        _eventClickFinish.value = true
 
     }
 
