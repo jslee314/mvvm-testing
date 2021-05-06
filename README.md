@@ -1,18 +1,11 @@
 # retrofitTesting
 --------------------------------------------------------------------------------------------------------
-
-
-# Navigation
-
-
-
 # Architecture components
 1) UI Controller과 ViewModel 의 역할을 분명히 나누어야함
 - UI Controller 역할 : 
-- ViewModel 역할 : 
+  ViewModel 역할 : 
 
-
-- ViewModelFactory 
+- ViewModelFactory 사용 : ViewModel의 기본 생성자 외 매개변수가 있는 생성자로 객체를 생성하기 위해
 
 2) UI Controller(lifecycle)는 Observer를 통해 LiveData를 관찰하고잇어서 변경여부를 알 수 있음
 
@@ -36,12 +29,7 @@
 # Room database and coroutines
 
 
-# RecyclerView
-
-
-
 # Connecting to the internet
-
 
 
 # Repository
@@ -51,26 +39,26 @@
 ANDROID FOR TESTING
 --------------------------------------------------------------------------------------------------------
 
-# 1. ViewModel 단위 테스트
+# 1. ViewModel 단위 Testing
 
 
-# 2. Repository 단위 테스트
+# 2. Repository 단위 Testing
 - Fake Data Source 만들기
 - Dependency Injection을 사용하여 Test 작성
 - Fake Repository 준비하기
 - ViewModel 내에서 Fake Repository 사용
 
 
-# 3. Fragment 통합 테스트
+# 3. Fragment 통합 Testing
 - 테스트에서 Fragment 사용하기
 - ServiceLocator 만들기
 - Espresso로 첫 번째 integration Test 작성
 
 
-# 4. Navigation 통합 테스트
+# 4. Navigation 통합 Testing
 - Mockito를 사용하여 Navigation Test 작성
 
-# 5. 코루틴 테스팅(Coroutines Testint)
+# 5. 코루틴 (Coroutines) Testing
 - Coroutines and ViewModels
 - Testing Coroutine Timing
 
