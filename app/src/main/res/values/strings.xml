@@ -15,8 +15,8 @@
     <string name="done">Done</string>
     <string name="yellow_star">Yellow star</string>
     <string name="name">Aleks Haecky</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="setting_fragment">Hello Setting_fragment</string>
-    <string name="about_fragment">Hello About_fragment</string>
+
+    <string name="setting_fragment">Setting_fragment</string>
+    <string name="about_fragment">About_fragment</string>
 
 </resources>

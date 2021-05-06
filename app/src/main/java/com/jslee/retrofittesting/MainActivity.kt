@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.jslee.retrofittesting.databinding.ActivityMainBinding
@@ -13,6 +14,9 @@ import com.jslee.retrofittesting.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var drawerLayout: DrawerLayout
+
 
     private val user: User = User("jslee")
 
@@ -26,6 +30,11 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this,navController)
 
 
+        // 햄버거바에 navigation drawer  추가
+
+        NavigationUI.setupWithNavController(binding.navView, navController)
+
+        NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
 
 
         binding.user = user
@@ -34,6 +43,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.myNavHostFragment)
-        return navController.navigateUp()
+        return NavigationUI.navigateUp(navController, binding.drawerLayout)
     }
 }
