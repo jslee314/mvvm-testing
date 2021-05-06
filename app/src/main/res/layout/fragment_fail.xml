@@ -6,24 +6,24 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/home_text"
+            android:id="@+id/fail_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="퀴즈를 시작할까요??"
+            android:text="실패!!!"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/button"/>
+            app:layout_constraintBottom_toTopOf="@+id/fail_btn"/>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/fail_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start!!!"
+            android:text="다시 시도해봐요"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_text" />
+            app:layout_constraintTop_toBottomOf="@+id/fail_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

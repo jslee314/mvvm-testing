@@ -6,28 +6,58 @@
     app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/aboutFragment"
-        android:name="com.jslee.retrofittesting.navDrawer.AboutFragment"
-        android:label="AboutFragment"
-        tools:layout="@layout/fragment_about"/>
-    <fragment
         android:id="@+id/quizFragment"
         android:name="com.jslee.retrofittesting.quiz.QuizFragment"
         android:label="QuizFragment"
-        tools:layout="@layout/fragment_quiz"/>
+        tools:layout="@layout/fragment_quiz">
+        <action
+            android:id="@+id/action_quizFragment_to_failFragment"
+            app:destination="@id/failFragment"
+            app:popUpTo="@id/quizFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_quizFragment_to_successFragment"
+            app:destination="@id/successFragment"
+            app:popUpTo="@id/successFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.jslee.retrofittesting.quiz.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/answerFragment"
-        android:name="com.jslee.retrofittesting.quiz.AnswerFragment"
+        android:id="@+id/successFragment"
+        android:name="com.jslee.retrofittesting.quiz.SuccessFragment"
         android:label="AnswerFragment"
-        tools:layout="@layout/fragment_answer"/>
+        tools:layout="@layout/fragment_success">
+        <action
+            android:id="@+id/action_successFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/failFragment"
+        android:name="com.jslee.retrofittesting.quiz.FailFragment"
+        android:label="FailFragment"
+        tools:layout="@layout/fragment_fail">
+        <action
+            android:id="@+id/action_failFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.jslee.retrofittesting.navDrawer.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting"/>
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.jslee.retrofittesting.navDrawer.AboutFragment"
+        android:label="AboutFragment"
+        tools:layout="@layout/fragment_about"/>
+
 </navigation>
