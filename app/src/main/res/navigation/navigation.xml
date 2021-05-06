@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.jslee.retrofittesting.quiz.HomeFragment"
+        android:name="com.jslee.retrofittesting.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/successFragment"
-        android:name="com.jslee.retrofittesting.quiz.SuccessFragment"
+        android:name="com.jslee.retrofittesting.success.SuccessFragment"
         android:label="AnswerFragment"
         tools:layout="@layout/fragment_success">
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/failFragment"
-        android:name="com.jslee.retrofittesting.quiz.FailFragment"
+        android:name="com.jslee.retrofittesting.fail.FailFragment"
         android:label="FailFragment"
         tools:layout="@layout/fragment_fail">
         <action

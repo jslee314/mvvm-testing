@@ -1,28 +1,32 @@
 package com.jslee.retrofittesting.quiz
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.jslee.retrofittesting.R
 import com.jslee.retrofittesting.databinding.FragmentQuizBinding
 
 
 class QuizFragment : Fragment() {
+    private lateinit var binding: FragmentQuizBinding
+    private lateinit var viewModel: QuizViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val binding = DataBindingUtil.inflate<FragmentQuizBinding>(inflater,
+        binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_quiz,container,false)
 
+        Log.d("jjslee", "Called ViewModelProvider.get")
+        viewModel = ViewModelProvider(this).get(QuizViewModel::class.java)
 
-        // quiz button에 navigaion.xml에서 만든 액션 추가
-//        binding.quizBtn.setOnClickListener { view : View ->
-//            view.findNavController().navigate(R.id.action_quizFragment_to_answerFragment)
-//        }
+
         binding.quizBtn.setOnClickListener {view : View ->
 
             if(binding.checkBox1.isChecked && binding.checkBox2.isChecked){

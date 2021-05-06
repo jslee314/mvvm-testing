@@ -54,6 +54,7 @@ dependencies {
     // for Material
     implementation "com.google.android.material:material:$version"
 
-
+    // for ViewModel
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
 }
