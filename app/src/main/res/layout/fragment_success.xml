@@ -20,8 +20,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/score_text"/>
+        <TextView
+            android:id="@+id/score_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="성공!!!"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/success_text"
             app:layout_constraintBottom_toTopOf="@+id/success_btn"/>
-
         <Button
             android:id="@+id/success_btn"
             android:layout_width="match_parent"
@@ -30,7 +38,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/success_text" />
+            app:layout_constraintTop_toBottomOf="@+id/score_text" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

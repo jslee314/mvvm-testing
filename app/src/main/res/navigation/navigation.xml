@@ -37,6 +37,10 @@
         <action
             android:id="@+id/action_successFragment_to_quizFragment"
             app:destination="@id/quizFragment" />
+        <argument
+            android:name="score"
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/failFragment"

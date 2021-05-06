@@ -17,6 +17,7 @@ class SuccessFragment : Fragment() {
 
     private lateinit var binding : FragmentSuccessBinding
     private lateinit var viewModel: SuccessViewModel
+    private lateinit var viewModelFactory: SuccessViewModelFactory
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -24,8 +25,10 @@ class SuccessFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_success,container,false)
 
-        Log.d("jjslee", "Called ViewModelProvider.get")
-        viewModel = ViewModelProvider(this).get(SuccessViewModel::class.java)
+        viewModelFactory = SuccessViewModelFactory(SuccessFragmentArgs.fromBundle(requireArguments()).score)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(SuccessViewModel::class.java)
+
+        binding.scoreText.text = viewModel.score.toString()
 
         // button에 navigaion.xml에서 만든 액션 추가
         binding.successBtn.setOnClickListener { view : View ->
