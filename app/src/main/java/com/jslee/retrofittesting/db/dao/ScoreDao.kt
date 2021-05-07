@@ -13,7 +13,7 @@ interface ScoreDao {
     @Update
     fun updateScore(score: Score)
 
-    @Delete
+    @Query("DELETE FROM quiz_score_table")
     fun deleteScore()
 
     @Query("SELECT * from quiz_score_table WHERE scoreId = :id")

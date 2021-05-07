@@ -13,7 +13,7 @@ interface UserDao {
     @Update
     fun updateUser(score: User)
 
-    @Delete
+    @Query("DELETE FROM user_table")
     fun deleteUser()
 
     @Query("SELECT * from user_table WHERE userId = :id")
