@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.jslee.retrofittesting.data.User
+import com.jslee.retrofittesting.db.entity.User
 import com.jslee.retrofittesting.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

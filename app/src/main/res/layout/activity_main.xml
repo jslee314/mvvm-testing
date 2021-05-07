@@ -6,7 +6,7 @@
     <data>
         <variable
             name="user"
-            type="com.jslee.retrofittesting.data.User" />
+            type="com.jslee.retrofittesting.entity.User" />
     </data>
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
