@@ -2,6 +2,7 @@ package com.jslee.retrofittesting.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import androidx.room.Query
 import com.jslee.retrofittesting.db.entity.User
 
 @Dao
