@@ -22,7 +22,6 @@ class FailFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_fail,container,false)
 
-        Log.d("jjslee", "Called ViewModelProvider.get")
         viewModel = ViewModelProvider(this).get(FailViewModel::class.java)
 
         // button에 navigaion.xml에서 만든 액션 추가

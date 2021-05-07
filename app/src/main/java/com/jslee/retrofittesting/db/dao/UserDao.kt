@@ -8,23 +8,23 @@ import com.jslee.retrofittesting.db.entity.User
 interface UserDao {
 
     @Insert
-    fun insertUser(score: User)
+    suspend fun insertUser(score: User)
 
     @Update
-    fun updateUser(score: User)
+    suspend fun updateUser(score: User)
 
     @Query("DELETE FROM user_table")
-    fun deleteUser()
+    suspend fun deleteUser()
 
-    @Query("SELECT * from user_table WHERE userId = :id")
-    fun selectUserByID(id: Long): User?
+    @Query("SELECT * from user_table WHERE user_name = :name")
+    suspend fun selectUserByName(name: String): User?
 
     @Query("SELECT * FROM user_table ORDER BY userId DESC LIMIT 1")
-    fun selectLatestUser() : User?
+    suspend fun selectLatestUser() : User?
 
     /**
     * Room은 LiveData를 항상 update된 상태로 유지하므로, 데이터를 한번만 가져오면 된다.**/
-    @Query("SELECT * FROM user_table ORDER BY userId DESC ")
-    fun selectAllUser() : LiveData<List<User>>?
+    @Query("SELECT * FROM user_table ORDER BY userId DESC")
+    fun selectAllUser() : LiveData<List<User>>
 
 }

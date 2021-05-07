@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.jslee.retrofittesting.db.entity.User
 import com.jslee.retrofittesting.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -25,13 +24,9 @@ class MainActivity : AppCompatActivity() {
         val navController = this.findNavController(R.id.myNavHostFragment)
         NavigationUI.setupActionBarWithNavController(this,navController)
 
-
         // 햄버거바에 navigation drawer  추가
-
         NavigationUI.setupWithNavController(binding.navView, navController)
-
         NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
-
 
     }
 

@@ -11,9 +11,9 @@ data class User (
     var userId: Long = 0L,
 
     @ColumnInfo(name = "user_name")
-    var name: String = "",
+    var userName: String = "",
 
     @ColumnInfo(name = "user_age")
-    var age: String = ""
+    var userAge: String = ""
 
 )

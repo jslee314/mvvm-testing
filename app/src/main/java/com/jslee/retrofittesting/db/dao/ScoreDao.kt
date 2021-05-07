@@ -8,23 +8,23 @@ import com.jslee.retrofittesting.db.entity.Score
 interface ScoreDao {
 
     @Insert
-    fun insertScore(score: Score)
+    suspend fun insertScore(score: Score)
 
     @Update
-    fun updateScore(score: Score)
+    suspend fun updateScore(score: Score)
 
     @Query("DELETE FROM quiz_score_table")
-    fun deleteScore()
+    suspend fun deleteScore()
 
     @Query("SELECT * from quiz_score_table WHERE scoreId = :id")
-    fun selectScoreByID(id: Long): Score?
+    suspend fun selectScoreByID(id: Long): Score?
 
     @Query("SELECT * FROM quiz_score_table ORDER BY scoreId DESC LIMIT 1")
-    fun selectLatestScore() : Score?
+    suspend fun selectLatestScore() : Score?
 
     /**
      * Room은 LiveData를 항상 update된 상태로 유지하므로, 데이터를 한번만 가져오면 된다.**/
-    @Query("SELECT * FROM quiz_score_table ORDER BY scoreId DESC ")
-    fun selectAllScore() : LiveData<List<Score>>?
+    @Query("SELECT * FROM quiz_score_table ORDER BY scoreId DESC")
+    fun selectAllScore() : LiveData<List<Score>>
 
 }
