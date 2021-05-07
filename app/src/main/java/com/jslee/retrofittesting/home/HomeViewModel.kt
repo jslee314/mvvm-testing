@@ -13,26 +13,24 @@ class HomeViewModel(val userDataSource: UserDao,
                     application: Application) : AndroidViewModel(application) {
 
     /**
-     *  user 엔티티 데이터      **/
-    private var user = MutableLiveData<User?>()
+     *  user 엔티티 데이터 **/
+    var user = MutableLiveData<User?>()
 
     /**
-     * 로그인 버튼 클릭여부를 담고 있는 LiveData (캡슐화)  **/
+     * 로그인 버튼 클릭여부를 담고 있는 LiveData (캡슐화) **/
     private val _eventClickLogin = MutableLiveData<Boolean>()
-
     val eventClickLogin:LiveData<Boolean>
         get() = _eventClickLogin
 
     /**
-     * 선택 완료 버튼 클릭여부를 담고 있는 LiveData (캡슐화)  **/
+     * 선택 완료 버튼 클릭여부를 담고 있는 LiveData (캡슐화) **/
     private val _eventClickStart = MutableLiveData<Boolean>()
-
     val eventClickStart:LiveData<Boolean>
         get() = _eventClickStart
 
 
     /**
-     * HomeViewModel 객체 생성시 수행되는 함수     */
+     * HomeViewModel 객체 생성시 수행되는 함수 */
     init {
        initUser()
     }
@@ -43,9 +41,8 @@ class HomeViewModel(val userDataSource: UserDao,
         }
     }
 
-
     /**
-    * 버튼 관련 바인딩 변수    **/
+    *  버튼 관련 바인딩 변수    **/
     // user가 set 되었을 때, login 버튼을 보이지 않게 한다.
     val loginVisible = Transformations.map(user) {
         null == it
@@ -59,11 +56,16 @@ class HomeViewModel(val userDataSource: UserDao,
     /**
      *  버튼 클릭 시 수행되는 함수들     */
     fun onClickedLoginBtn(){
-
+        _eventClickLogin.value = true
+        viewModelScope.launch {
+//            val value:User? = user.value?:
+//            val newUser :User = User(1, user.value.userName,  )
+//            insert(value)
+        }
     }
 
     fun onClickedStartBtn(){
-
+        _eventClickStart.value = true
     }
 
     /**
