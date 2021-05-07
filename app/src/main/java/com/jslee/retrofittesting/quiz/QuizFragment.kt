@@ -57,7 +57,7 @@ class QuizFragment : Fragment() {
     private fun Finished(){
         var action = QuizFragmentDirections.actionQuizFragmentToSuccessFragment()
         if(viewModel.score.equals(2)){
-            action = QuizFragmentDirections.actionQuizFragmentToFailFragment()
+            action = QuizFragmentDirections.actionQuizFragmentToFailFragment() as QuizFragmentDirections.ActionQuizFragmentToSuccessFragment
         }
         NavHostFragment.findNavController(this).navigate(action)
 
