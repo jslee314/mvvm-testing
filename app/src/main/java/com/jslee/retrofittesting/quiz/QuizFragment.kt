@@ -11,11 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.jslee.retrofittesting.R
 import com.jslee.retrofittesting.databinding.FragmentQuizBinding
+import com.jslee.retrofittesting.db.RoomDB
 
 
 class QuizFragment : Fragment() {
     private lateinit var binding: FragmentQuizBinding
     private lateinit var viewModel: QuizViewModel
+    private lateinit var viewModelFactory:QuizViewModelFactory
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_quiz,container,false)
@@ -27,8 +29,14 @@ class QuizFragment : Fragment() {
     }
 
     private fun setUpBinding(){
+        val application = requireNotNull(this.activity).application
 
-        viewModel = ViewModelProvider(this).get(QuizViewModel::class.java)
+        val userDao = RoomDB.getInstance(application).userDao
+        val scoreDao = RoomDB.getInstance(application).scoreDao
+
+        viewModelFactory = QuizViewModelFactory(userDao, scoreDao, application)
+
+        viewModel = ViewModelProvider(this, viewModelFactory).get(QuizViewModel::class.java)
 
         // databinding을 위한 viewmodel 셋팅 -VieWModel의 모든 데이터에 바인딩 된 레이아웃 액세스를 허용
         binding.viewModel = viewModel
@@ -41,6 +49,7 @@ class QuizFragment : Fragment() {
     private fun setUpObserver(){
         viewModel.eventClickFinish.observe(viewLifecycleOwner, Observer<Boolean> { isFinished ->
             if(isFinished){
+                viewModel.insertToRoomDB()
                 Finished()
             }
         })
@@ -55,11 +64,15 @@ class QuizFragment : Fragment() {
     * @작성자 : 이재선
     **/
     private fun Finished(){
-        var action = QuizFragmentDirections.actionQuizFragmentToSuccessFragment()
         if(viewModel.score.equals(2)){
-            action = QuizFragmentDirections.actionQuizFragmentToFailFragment() as QuizFragmentDirections.ActionQuizFragmentToSuccessFragment
+            var action = QuizFragmentDirections.actionQuizFragmentToFailFragment()
+            NavHostFragment.findNavController(this).navigate(action)
+
+        }else{
+            var action = QuizFragmentDirections.actionQuizFragmentToSuccessFragment()
+            NavHostFragment.findNavController(this).navigate(action)
+
         }
-        NavHostFragment.findNavController(this).navigate(action)
 
     }
 

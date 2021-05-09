@@ -14,7 +14,6 @@ import com.jslee.retrofittesting.databinding.FragmentHomeBinding
 import com.jslee.retrofittesting.db.RoomDB
 
 class HomeFragment : Fragment() {
-
         private lateinit var binding :FragmentHomeBinding
         private lateinit var viewModel: HomeViewModel
         private lateinit var viewModelFactory: HomeViewModelFactory
@@ -56,6 +55,17 @@ class HomeFragment : Fragment() {
         private fun setUpObserver(){
 
                 /**  eventClickStart 라이브 데이터를 observing 함 */
+                viewModel.eventClickLogin.observe(viewLifecycleOwner, Observer<Boolean> { isClicked ->
+                        if(isClicked){
+                                viewModel.mUser.userName = binding.editTextTextUserName.text.toString()
+                                viewModel.mUser.userAge = binding.editTextUserAge.text.toString()
+                                binding.invalidateAll()
+                                viewModel.setUserToRoomDB()
+
+                        }
+                })
+
+                /**  eventClickStart 라이브 데이터를 observing 함 */
                 viewModel.eventClickStart.observe(viewLifecycleOwner, Observer<Boolean> { isClicked ->
                         if(isClicked){
                                 NavHostFragment.findNavController(this).navigate(
@@ -63,5 +73,7 @@ class HomeFragment : Fragment() {
 
                         }
                 })
+
+
         }
 }
