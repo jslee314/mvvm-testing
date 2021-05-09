@@ -1,13 +1,13 @@
-package com.jslee.retrofittesting.db
+package com.jslee.retrofittesting.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.jslee.retrofittesting.db.dao.ScoreDao
-import com.jslee.retrofittesting.db.dao.UserDao
-import com.jslee.retrofittesting.db.entity.Score
-import com.jslee.retrofittesting.db.entity.User
+import com.jslee.retrofittesting.database.dao.ScoreDao
+import com.jslee.retrofittesting.database.dao.UserDao
+import com.jslee.retrofittesting.database.entity.Score
+import com.jslee.retrofittesting.database.entity.User
 
 @Database(entities = [User::class, Score::class], version = 1, exportSchema = false)
 abstract class RoomDB : RoomDatabase() {

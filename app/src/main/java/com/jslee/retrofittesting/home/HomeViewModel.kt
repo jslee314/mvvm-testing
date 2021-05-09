@@ -4,9 +4,9 @@ import android.app.Application
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
-import com.jslee.retrofittesting.db.dao.ScoreDao
-import com.jslee.retrofittesting.db.dao.UserDao
-import com.jslee.retrofittesting.db.entity.User
+import com.jslee.retrofittesting.database.dao.ScoreDao
+import com.jslee.retrofittesting.database.dao.UserDao
+import com.jslee.retrofittesting.database.entity.User
 import kotlinx.coroutines.launch
 
 class HomeViewModel(val userDataSource: UserDao,

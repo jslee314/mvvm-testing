@@ -3,8 +3,8 @@ package com.jslee.retrofittesting.quiz
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.jslee.retrofittesting.db.dao.ScoreDao
-import com.jslee.retrofittesting.db.dao.UserDao
+import com.jslee.retrofittesting.database.dao.ScoreDao
+import com.jslee.retrofittesting.database.dao.UserDao
 
 class QuizViewModelFactory (private val userDataSource: UserDao,
                             private val scoreDataSource: ScoreDao,

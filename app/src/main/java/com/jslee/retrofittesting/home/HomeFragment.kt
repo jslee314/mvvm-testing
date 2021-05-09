@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.jslee.retrofittesting.R
 import com.jslee.retrofittesting.databinding.FragmentHomeBinding
-import com.jslee.retrofittesting.db.RoomDB
+import com.jslee.retrofittesting.database.RoomDB
 
 class HomeFragment : Fragment() {
         private lateinit var binding :FragmentHomeBinding

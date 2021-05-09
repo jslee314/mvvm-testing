@@ -1,4 +1,4 @@
-package com.jslee.retrofittesting.db.entity
+package com.jslee.retrofittesting.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

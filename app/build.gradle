@@ -31,7 +31,8 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+
     }
     buildFeatures {
         dataBinding true
@@ -78,5 +79,20 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
 
+    // retrofit for networking
+    def version_retrofit = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
+    // moshi for parsing the JSON format
+    def moshi_version = "1.9.3"
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    // glide for images
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    kapt 'com.github.bumptech.glide:compiler:4.7.1'
 
 }
