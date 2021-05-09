@@ -13,6 +13,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.jslee.retrofittesting.R
 import com.jslee.retrofittesting.databinding.FragmentSuccessBinding
+import com.jslee.retrofittesting.db.RoomDB
+import com.jslee.retrofittesting.home.HomeViewModelFactory
 
 
 class SuccessFragment : Fragment() {
@@ -33,7 +35,12 @@ class SuccessFragment : Fragment() {
     }
 
     private fun setUpBinding(){
-        viewModelFactory = SuccessViewModelFactory(SuccessFragmentArgs.fromBundle(requireArguments()).score)
+        val application = requireNotNull(this.activity).application
+
+        val userDao = RoomDB.getInstance(application).userDao
+        val scoreDao = RoomDB.getInstance(application).scoreDao
+
+        viewModelFactory = SuccessViewModelFactory(userDao, scoreDao, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(SuccessViewModel::class.java)
 
         // databinding을 위한 viewmodel 셋팅 -VieWModel의 모든 데이터에 바인딩 된 레이아웃 액세스를 허용
@@ -50,16 +57,10 @@ class SuccessFragment : Fragment() {
                 successed()
             }
         })
-
     }
-
 
     private fun successed(){
         NavHostFragment.findNavController(this).navigate(SuccessFragmentDirections.actionSuccessFragmentToQuizFragment())
     }
-
-
-
-
 
 }

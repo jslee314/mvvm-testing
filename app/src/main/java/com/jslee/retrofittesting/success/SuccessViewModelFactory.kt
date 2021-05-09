@@ -1,17 +1,19 @@
 package com.jslee.retrofittesting.success
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.jslee.retrofittesting.db.dao.ScoreDao
+import com.jslee.retrofittesting.db.dao.UserDao
 
-class SuccessViewModelFactory (private val userScore: Int) :ViewModelProvider.Factory{
-
+class SuccessViewModelFactory (private val userDataSource: UserDao,
+                               private val scoreDataSource: ScoreDao,
+                               private val application: Application) : ViewModelProvider.Factory {
+    @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(SuccessViewModel::class.java)){
-            return SuccessViewModel(userScore) as T
+        if (modelClass.isAssignableFrom(SuccessViewModel::class.java)) {
+            return SuccessViewModel(userDataSource, scoreDataSource, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
-
     }
-
-
 }

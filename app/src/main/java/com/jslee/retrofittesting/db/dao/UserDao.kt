@@ -8,7 +8,7 @@ import com.jslee.retrofittesting.db.entity.User
 @Dao
 interface UserDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(score: User)
 
     @Update
