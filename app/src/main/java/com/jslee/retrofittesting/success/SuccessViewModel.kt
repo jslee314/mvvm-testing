@@ -2,9 +2,9 @@ package com.jslee.retrofittesting.success
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.jslee.retrofittesting.database.dao.ScoreDao
-import com.jslee.retrofittesting.database.dao.UserDao
-import com.jslee.retrofittesting.database.entity.Score
+import com.jslee.retrofittesting.data.local.dao.ScoreDao
+import com.jslee.retrofittesting.data.local.dao.UserDao
+import com.jslee.retrofittesting.data.local.entity.Score
 import kotlinx.coroutines.launch
 
 class SuccessViewModel(val userDataSource: UserDao,

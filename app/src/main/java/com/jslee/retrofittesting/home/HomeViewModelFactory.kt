@@ -3,8 +3,8 @@ package com.jslee.retrofittesting.home
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.jslee.retrofittesting.database.dao.ScoreDao
-import com.jslee.retrofittesting.database.dao.UserDao
+import com.jslee.retrofittesting.data.local.dao.ScoreDao
+import com.jslee.retrofittesting.data.local.dao.UserDao
 
 class HomeViewModelFactory(private val userDataSource: UserDao,
                            private val scoreDataSource: ScoreDao,

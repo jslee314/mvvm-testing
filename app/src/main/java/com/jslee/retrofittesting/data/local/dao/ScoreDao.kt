@@ -1,8 +1,8 @@
-package com.jslee.retrofittesting.database.dao
+package com.jslee.retrofittesting.data.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.jslee.retrofittesting.database.entity.Score
+import com.jslee.retrofittesting.data.local.entity.Score
 
 @Dao
 interface ScoreDao {

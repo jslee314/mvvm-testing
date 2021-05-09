@@ -1,9 +1,9 @@
-package com.jslee.retrofittesting.database.dao
+package com.jslee.retrofittesting.data.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.Query
-import com.jslee.retrofittesting.database.entity.User
+import com.jslee.retrofittesting.data.local.entity.User
 
 @Dao
 interface UserDao {

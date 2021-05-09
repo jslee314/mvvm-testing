@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.jslee.retrofittesting.R
 import com.jslee.retrofittesting.databinding.FragmentQuizBinding
-import com.jslee.retrofittesting.database.RoomDB
+import com.jslee.retrofittesting.data.local.RoomDB
 
 
 class QuizFragment : Fragment() {

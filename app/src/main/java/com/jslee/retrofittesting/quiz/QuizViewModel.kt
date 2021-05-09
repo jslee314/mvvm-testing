@@ -3,9 +3,9 @@ package com.jslee.retrofittesting.quiz
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.jslee.retrofittesting.database.dao.ScoreDao
-import com.jslee.retrofittesting.database.dao.UserDao
-import com.jslee.retrofittesting.database.entity.Score
+import com.jslee.retrofittesting.data.local.dao.ScoreDao
+import com.jslee.retrofittesting.data.local.dao.UserDao
+import com.jslee.retrofittesting.data.local.entity.Score
 import kotlinx.coroutines.launch
 
 class QuizViewModel(val userDataSource: UserDao,
@@ -58,7 +58,8 @@ class QuizViewModel(val userDataSource: UserDao,
     fun insertToRoomDB(){
         viewModelScope.launch {
 //            val score = score.value ?: return@launch
-            val score:Score = Score()
+            val score: Score =
+                Score()
             score.numRightQuiz = nowScore
             score.startTime = startTime
             score.endTime = System.currentTimeMillis()

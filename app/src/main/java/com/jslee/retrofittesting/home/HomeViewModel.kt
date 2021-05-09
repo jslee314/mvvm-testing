@@ -4,9 +4,9 @@ import android.app.Application
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
-import com.jslee.retrofittesting.database.dao.ScoreDao
-import com.jslee.retrofittesting.database.dao.UserDao
-import com.jslee.retrofittesting.database.entity.User
+import com.jslee.retrofittesting.data.local.dao.ScoreDao
+import com.jslee.retrofittesting.data.local.dao.UserDao
+import com.jslee.retrofittesting.data.local.entity.User
 import kotlinx.coroutines.launch
 
 class HomeViewModel(val userDataSource: UserDao,
@@ -17,7 +17,8 @@ class HomeViewModel(val userDataSource: UserDao,
      *  user 엔티티 데이터 **/
     var user = MutableLiveData<User?>()
 
-    var mUser:User = User()
+    var mUser: User =
+        User()
 
     /**
      * 로그인 버튼 클릭여부를 담고 있는 LiveData (캡슐화) **/
@@ -115,7 +116,7 @@ class HomeViewModel(val userDataSource: UserDao,
      *  코틀린을 사용해서 비동기 처리를 함*/
 
     private suspend fun getUser(): User?{
-        val user:User? = userDataSource.selectLatestUser()
+        val user: User? = userDataSource.selectLatestUser()
         return user
     }
 

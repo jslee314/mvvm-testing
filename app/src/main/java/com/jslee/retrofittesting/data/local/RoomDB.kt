@@ -1,13 +1,13 @@
-package com.jslee.retrofittesting.database
+package com.jslee.retrofittesting.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.jslee.retrofittesting.database.dao.ScoreDao
-import com.jslee.retrofittesting.database.dao.UserDao
-import com.jslee.retrofittesting.database.entity.Score
-import com.jslee.retrofittesting.database.entity.User
+import com.jslee.retrofittesting.data.local.dao.ScoreDao
+import com.jslee.retrofittesting.data.local.dao.UserDao
+import com.jslee.retrofittesting.data.local.entity.Score
+import com.jslee.retrofittesting.data.local.entity.User
 
 @Database(entities = [User::class, Score::class], version = 1, exportSchema = false)
 abstract class RoomDB : RoomDatabase() {
@@ -26,7 +26,8 @@ abstract class RoomDB : RoomDatabase() {
 
         fun getInstance(context: Context): RoomDB {
             synchronized(this) {
-                var instance = INSTANCE
+                var instance =
+                    INSTANCE
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(
