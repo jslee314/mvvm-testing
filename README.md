@@ -1,6 +1,6 @@
 # retrofitTesting
 --------------------------------------------------------------------------------------------------------
-# Architecture components
+### Architecture components
 1) UI Controller과 ViewModel 의 역할을 분명히 나누어야함
 - UI Controller 역할 : 
   ViewModel 역할 : 
@@ -26,42 +26,45 @@
 
 
 
-# Room database and coroutines
+### Room database and coroutines
 
 
-# Connecting to the internet
+### Connecting to the internet
 
 
-# Repository
+### Repository
 
 
 --------------------------------------------------------------------------------------------------------
 ANDROID FOR TESTING
 --------------------------------------------------------------------------------------------------------
 
-# 1. ViewModel 단위 Testing
+## 1. ViewModel 단위 Testing
 
 
-# 2. Repository 단위 Testing
+## 2. Repository 단위 Testing
 - Fake Data Source 만들기
 - Dependency Injection을 사용하여 Test 작성
 - Fake Repository 준비하기
 - ViewModel 내에서 Fake Repository 사용
 
 
-# 3. Fragment 통합 Testing
+## 3. Fragment 통합 Testing
 - 테스트에서 Fragment 사용하기
 - ServiceLocator 만들기
 - Espresso로 첫 번째 integration Test 작성
 
 
-# 4. Navigation 통합 Testing
+## 4. Navigation 통합 Testing
 - Mockito를 사용하여 Navigation Test 작성
 
-# 5. 코루틴 (Coroutines) Testing
+## 5. 코루틴 (Coroutines) Testing
 - Coroutines and ViewModels
 - Testing Coroutine Timing
 
+
+## UI Test with Espresso
+RecyclerVeiw
 
 ----------------------------------------------------------------------------------------------------------
 
