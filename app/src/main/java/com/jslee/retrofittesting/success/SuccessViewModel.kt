@@ -5,11 +5,13 @@ import androidx.lifecycle.*
 import com.jslee.retrofittesting.data.local.dao.ScoreDao
 import com.jslee.retrofittesting.data.local.dao.UserDao
 import com.jslee.retrofittesting.data.local.entity.Score
+import com.jslee.retrofittesting.data.remote.RemoteImg
 import kotlinx.coroutines.launch
 
 class SuccessViewModel(val userDataSource: UserDao,
                        val scoreDataSource: ScoreDao,
                        application: Application) : AndroidViewModel(application) {
+
 
     /**
      * @내용 : 점수 (캡슐화)
@@ -23,6 +25,14 @@ class SuccessViewModel(val userDataSource: UserDao,
         _score?.numRightQuiz.toString()
 
     }
+
+    private val _properties = MutableLiveData<List<RemoteImg>>()
+
+    // The external LiveData interface to the property is immutable, so only this class can modify
+    val properties: LiveData<List<RemoteImg>>
+        get() = _properties
+
+
     /**
      * @내용 : 선택 완료 버튼 (캡슐화)
      * @작성자 : 이재선
@@ -34,7 +44,17 @@ class SuccessViewModel(val userDataSource: UserDao,
     init {
 
         getScoreFromRoomDB()
+//        getMarsRealEstateProperties(imgRes)
     }
+
+    private fun getMarsRealEstateProperties(imgRes:IntArray) {
+
+
+
+//        _properties.value.
+
+    }
+
 
     fun onClickedSuccessBtn(){
         _eventClickSuccess.value = true

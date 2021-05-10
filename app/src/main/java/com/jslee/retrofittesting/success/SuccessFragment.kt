@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.jslee.retrofittesting.R
 import com.jslee.retrofittesting.databinding.FragmentSuccessBinding
 import com.jslee.retrofittesting.data.local.RoomDB
@@ -20,17 +21,24 @@ class SuccessFragment : Fragment() {
     private lateinit var viewModel: SuccessViewModel
     private lateinit var viewModelFactory: SuccessViewModelFactory
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_success,container,false)
 
         setUpBinding()
+        setUpView()
         setUpObserver()
 
         return binding.root
     }
 
+    /**
+    * @내용 :
+    * @최초작성일 : 2021-05-10 오후 6:30
+    * @작성자 : 이재선
+    **/
     private fun setUpBinding(){
         val application = requireNotNull(this.activity).application
 
@@ -48,16 +56,54 @@ class SuccessFragment : Fragment() {
 
     }
 
-    private fun setUpObserver(){
-        viewModel.eventClickSuccess.observe(viewLifecycleOwner, Observer<Boolean> { isSuccessed ->
-            if(isSuccessed){
-                successed()
-            }
-        })
+    /**
+    * @내용 :
+    * @최초작성일 : 2021-05-10 오후 6:30
+    * @작성자 : 이재선
+    **/
+    private fun setUpView(){
+
+        // 이미지RecyclerView 만들기
+        val imageAdapter = ImageAdapter()
+        binding.imageRecyclerView.adapter = imageAdapter
+        binding.imageRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
+        val imgRes = arrayOf(R.drawable.food_icon_barbecue, R.drawable.food_icon_beer,
+            R.drawable.food_icon_bobatea, R.drawable.food_icon_burger, R.drawable.food_icon_coffee,
+            R.drawable.food_icon_cupcake, R.drawable.food_icon_donut, R.drawable.food_icon_noodle,
+            R.drawable.food_icon_pizza, R.drawable.food_icon_steak)
+
+        val dataKR = arrayOf("바베큐", "맥주", "버블티", "버거", "커피",
+            "컵케이크", "도넛", "국수", "피자", "스테이크")
+
+        val dataENText = arrayOf("barbecue is delicious", "beer is delicious", "bobatea is delicious",
+            "burger is delicious", "coffee is delicious", "cupcake is delicious",
+            "donut is delicious", "noodle is delicious", "pizza is delicious", "steak is delicious")
+
+        imageAdapter.imgRes = imgRes
+        imageAdapter.dataKR = dataKR
+        imageAdapter.dataENText = dataENText
+        imageAdapter.notifyDataSetChanged()
+
     }
 
-    private fun successed(){
-        NavHostFragment.findNavController(this).navigate(SuccessFragmentDirections.actionSuccessFragmentToQuizFragment())
+    /**
+    * @내용 :
+    * @최초작성일 : 2021-05-10 오후 6:30
+    * @작성자 : 이재선
+    **/
+    private fun setUpObserver() {
+
+        /**
+         * 성공 버튼 클릭여부에 대한 라이브데이터를 observing */
+        viewModel.eventClickSuccess.observe(viewLifecycleOwner, Observer<Boolean> { isSuccessed ->
+            if (isSuccessed) {
+                NavHostFragment.findNavController(this)
+                    .navigate(SuccessFragmentDirections.actionSuccessFragmentToQuizFragment())
+            }
+        })
+
+
     }
 
 }
