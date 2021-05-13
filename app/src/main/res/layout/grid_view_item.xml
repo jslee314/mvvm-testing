@@ -4,12 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    <data>-->
-<!--        <import type="android.view.View"/>-->
-<!--        <variable-->
-<!--            name="property"-->
-<!--            type="com.jslee.mvvm_testing.data.remote.MarsProperty"/>-->
-<!--    </data>-->
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="property"
+            type="com.jslee.mvvm_testing.data.remote.MarsProperty"/>
+    </data>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -22,6 +22,7 @@
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
             android:padding="2dp"
+            app:imageUrl="@{property.imgSrcUrl}"
             tools:src="@tools:sample/backgrounds/scenic"/>
 
 <!--        <ImageView-->

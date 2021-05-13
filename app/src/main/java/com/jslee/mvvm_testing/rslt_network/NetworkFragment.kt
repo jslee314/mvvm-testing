@@ -22,7 +22,6 @@ class NetworkFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_network,container,false)
 
-
         setUpBinding()
         setUpView()
         setUpObserver()
@@ -39,6 +38,9 @@ class NetworkFragment : Fragment() {
     }
 
     private fun setUpView(){
+
+        // Sets the adapter of the photosGrid RecyclerView
+        binding.photosGrid.adapter = PhotoGridAdapter()
 
     }
 
