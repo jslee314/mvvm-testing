@@ -22,7 +22,7 @@
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
             android:padding="2dp"
-            app:imageUrl="@{property.imgSrcUrl}"
+            app:BA_imageUrl="@{property.imgSrcUrl}"
             tools:src="@tools:sample/backgrounds/scenic"/>
 
 <!--        <ImageView-->
