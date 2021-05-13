@@ -12,6 +12,12 @@ import kotlinx.android.parcel.Parcelize
 * @최초작성일 : 2021-05-13 오후 1:40
 * @작성자 : 이재선
 **/
+// 응답 샘플이 다음과 같기때문에 이를 기반으로 data 클래스를 만들자
+//[{"price":450000,
+//    "id":"424906",
+//    "type":"rent",
+//    "img_src":"http://mars.jpl.nasa.gov/msl-raw-images/msss/01000/mcam/1000ML0044631300305227E03_DXXX.jpg"},
+//...]
 @Parcelize
 data class MarsProperty (
         val id: String,

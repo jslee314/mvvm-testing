@@ -20,7 +20,6 @@ class NetworkViewModel : ViewModel() {
         getMarsRealEstateProperties()
     }
     private fun getMarsRealEstateProperties() {
-//        _response.value = "Set the Mars API Response here!"
 
         viewModelScope.launch {
             try {
@@ -30,6 +29,11 @@ class NetworkViewModel : ViewModel() {
                 _response.value = "Failure: ${e.message}"
             }
         }
+
+
     }
+
+
+
 
 }
