@@ -24,29 +24,32 @@ class QuizViewModel(val userDataSource: UserDao,
     var startTime = 0L
 
     /**
-    * @내용 : 선택 완료 버튼 (캡슐화)
+    * @내용 : 버튼 클릭여부 (캡슐화)
     * @작성자 : 이재선
     **/
-    private val _eventClickFinish = MutableLiveData<Boolean>()
-    val eventClickFinish:LiveData<Boolean>
-        get() = _eventClickFinish
+    private val _eventClickToNetworkBtn = MutableLiveData<Boolean>()
+    val eventToNetworkBtn:LiveData<Boolean>
+        get() = _eventClickToNetworkBtn
+
+    private val _eventClickToRoomBtn = MutableLiveData<Boolean>()
+    val eventClickToRoomBtn:LiveData<Boolean>
+        get() = _eventClickToRoomBtn
 
 
     init {
         startTime = System.currentTimeMillis()
-        Log.d("jjslee", "nowScore : " + nowScore)
-
     }
 
     fun onPlusScore(){
         nowScore = nowScore.plus(1)
-        Log.d("jjslee", "nowScore : " + nowScore)
-
     }
 
-    fun onClickedFinish(){
-        _eventClickFinish.value = true
+    fun onClickedToNetworkBtn(){
+        _eventClickToNetworkBtn.value = true
+    }
 
+    fun onClickedToRoomBtn(){
+        _eventClickToRoomBtn.value = true
     }
 
 
@@ -58,8 +61,7 @@ class QuizViewModel(val userDataSource: UserDao,
     fun insertToRoomDB(){
         viewModelScope.launch {
 //            val score = score.value ?: return@launch
-            val score: Score =
-                Score()
+            val score: Score = Score()
             score.numRightQuiz = nowScore
             score.startTime = startTime
             score.endTime = System.currentTimeMillis()

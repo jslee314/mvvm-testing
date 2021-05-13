@@ -1,4 +1,4 @@
-package com.jslee.retrofittesting.success
+package com.jslee.retrofittesting.rslt_room
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,21 +11,31 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.jslee.retrofittesting.R
-import com.jslee.retrofittesting.databinding.FragmentSuccessBinding
 import com.jslee.retrofittesting.data.local.RoomDB
+import com.jslee.retrofittesting.databinding.FragmentRoomBinding
 
 
-class SuccessFragment : Fragment() {
+/**
+* @내용 :
+* @수정 :
+* @버젼 : 0.0.0
+* @최초작성일 : 2021-05-13 오후 1:34
+* @작성자 : 이재선
+**/
+class RoomFragment : Fragment() {
 
-    private lateinit var binding : FragmentSuccessBinding
-    private lateinit var viewModel: SuccessViewModel
-    private lateinit var viewModelFactory: SuccessViewModelFactory
+    private lateinit var binding : FragmentRoomBinding
+    private lateinit var viewModel: RoomViewModel
+    private lateinit var viewModelFactory: RoomViewModelFactory
 
 
+    /**
+    *  데이터 바인딩으로 레이아웃을 확장함
+    **/
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_success,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_room,container,false)
 
         setUpBinding()
         setUpView()
@@ -35,7 +45,7 @@ class SuccessFragment : Fragment() {
     }
 
     /**
-    * @내용 :
+    * @내용 : Lifecycle-owner를 SuccessFragment 설정하여 데이터 바인딩이 LiveData를 관찰 할 수 있도록함
     * @최초작성일 : 2021-05-10 오후 6:30
     * @작성자 : 이재선
     **/
@@ -45,8 +55,8 @@ class SuccessFragment : Fragment() {
         val userDao = RoomDB.getInstance(application).userDao
         val scoreDao = RoomDB.getInstance(application).scoreDao
 
-        viewModelFactory = SuccessViewModelFactory(userDao, scoreDao, application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(SuccessViewModel::class.java)
+        viewModelFactory = RoomViewModelFactory(userDao, scoreDao, application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(RoomViewModel::class.java)
 
         // databinding을 위한 viewmodel 셋팅 -VieWModel의 모든 데이터에 바인딩 된 레이아웃 액세스를 허용
         binding.viewModel = viewModel
@@ -57,7 +67,7 @@ class SuccessFragment : Fragment() {
     }
 
     /**
-    * @내용 :
+    * @내용 : 어댑터로 RecyclerView를 설정합니다.
     * @최초작성일 : 2021-05-10 오후 6:30
     * @작성자 : 이재선
     **/
@@ -99,7 +109,7 @@ class SuccessFragment : Fragment() {
         viewModel.eventClickSuccess.observe(viewLifecycleOwner, Observer<Boolean> { isSuccessed ->
             if (isSuccessed) {
                 NavHostFragment.findNavController(this)
-                    .navigate(SuccessFragmentDirections.actionSuccessFragmentToQuizFragment())
+                    .navigate(RoomFragmentDirections.actionRoomFragmentToQuizFragment())
             }
         })
 

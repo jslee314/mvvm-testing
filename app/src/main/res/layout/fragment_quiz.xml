@@ -52,20 +52,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{@string/score_format(viewModel.score)}"
-            app:layout_constraintBottom_toTopOf="@+id/quiz_btn"
+            app:layout_constraintBottom_toTopOf="@+id/to_network_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
         <Button
-            android:id="@+id/quiz_btn"
+            android:id="@+id/to_network_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="선택 완료!!"
-            android:onClick="@{() -> viewModel.onClickedFinish()}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="network에서 조회해서 결과보기!!"
+            android:onClick="@{() -> viewModel.onClickedToNetworkBtn()}"
+            app:layout_constraintBottom_toTopOf="@+id/to_room_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/now_score_text" />
+        <Button
+            android:id="@+id/to_room_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="room에서 조회해서 결과 보기!!"
+            android:onClick="@{() -> viewModel.onClickedToRoomBtn()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/to_network_btn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

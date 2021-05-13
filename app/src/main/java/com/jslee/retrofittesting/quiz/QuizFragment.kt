@@ -47,34 +47,23 @@ class QuizFragment : Fragment() {
     }
 
     private fun setUpObserver(){
-        viewModel.eventClickFinish.observe(viewLifecycleOwner, Observer<Boolean> { isFinished ->
-            if(isFinished){
+        viewModel.eventToNetworkBtn.observe(viewLifecycleOwner, Observer<Boolean> { isClicked ->
+            if(isClicked){
                 viewModel.insertToRoomDB()
-                Finished()
+                var action = QuizFragmentDirections.actionQuizFragmentToNetworkFragment()
+                NavHostFragment.findNavController(this).navigate(action)
+            }
+        })
+
+        viewModel.eventClickToRoomBtn.observe(viewLifecycleOwner, Observer<Boolean> { isClicked ->
+            if(isClicked){
+                viewModel.insertToRoomDB()
+                var action = QuizFragmentDirections.actionQuizFragmentToSuccessFragment()
+                NavHostFragment.findNavController(this).navigate(action)
             }
         })
     }
 
-
-    /**
-    * @내용 :
-    * @수정 :
-    * @버젼 : 0.0.0
-    * @최초작성일 : 2021-05-06 오후 6:31
-    * @작성자 : 이재선
-    **/
-    private fun Finished(){
-        if(viewModel.score.equals(2)){
-            var action = QuizFragmentDirections.actionQuizFragmentToFailFragment()
-            NavHostFragment.findNavController(this).navigate(action)
-
-        }else{
-            var action = QuizFragmentDirections.actionQuizFragmentToSuccessFragment()
-            NavHostFragment.findNavController(this).navigate(action)
-
-        }
-
-    }
 
 
 }

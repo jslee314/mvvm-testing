@@ -11,14 +11,14 @@
         android:label="QuizFragment"
         tools:layout="@layout/fragment_quiz">
         <action
-            android:id="@+id/action_quizFragment_to_failFragment"
-            app:destination="@id/failFragment"
+            android:id="@+id/action_quizFragment_to_networkFragment"
+            app:destination="@id/networkFragment"
             app:popUpTo="@id/quizFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_quizFragment_to_successFragment"
-            app:destination="@id/successFragment"
-            app:popUpTo="@id/successFragment" />
+            app:destination="@id/roomFragment"
+            app:popUpTo="@id/roomFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -30,12 +30,12 @@
             app:destination="@id/quizFragment" />
     </fragment>
     <fragment
-        android:id="@+id/successFragment"
-        android:name="com.jslee.retrofittesting.success.SuccessFragment"
+        android:id="@+id/roomFragment"
+        android:name="com.jslee.retrofittesting.rslt_room.RoomFragment"
         android:label="AnswerFragment"
-        tools:layout="@layout/fragment_success">
+        tools:layout="@layout/fragment_room">
         <action
-            android:id="@+id/action_successFragment_to_quizFragment"
+            android:id="@+id/action_roomFragment_to_quizFragment"
             app:destination="@id/quizFragment" />
         <argument
             android:name="score"
@@ -43,13 +43,16 @@
             app:argType="integer" />
     </fragment>
     <fragment
-        android:id="@+id/failFragment"
-        android:name="com.jslee.retrofittesting.fail.FailFragment"
-        android:label="FailFragment"
-        tools:layout="@layout/fragment_fail">
+        android:id="@+id/networkFragment"
+        android:name="com.jslee.retrofittesting.rslt_network.NetworkFragment"
+        android:label="NetworkFragment"
+        tools:layout="@layout/fragment_network">
         <action
-            android:id="@+id/action_failFragment_to_quizFragment"
+            android:id="@+id/action_networkFragment_to_quizFragment"
             app:destination="@id/quizFragment" />
+        <action
+            android:id="@+id/action_networkFragment_to_networkDetailFragment"
+            app:destination="@id/networkDetailFragment" />
     </fragment>
 
     <fragment
@@ -63,5 +66,9 @@
         android:name="com.jslee.retrofittesting.navDrawer.AboutFragment"
         android:label="AboutFragment"
         tools:layout="@layout/fragment_about"/>
+    <fragment
+        android:id="@+id/networkDetailFragment"
+        android:name="com.jslee.retrofittesting.rslt_network_detail.NetworkDetailFragment"
+        android:label="NetworkDetailFragment" />
 
 </navigation>

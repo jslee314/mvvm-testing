@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.jslee.retrofittesting.success.SuccessViewModel" />
+            type="com.jslee.retrofittesting.rslt_room.RoomViewModel" />
 
     </data>
 
@@ -43,7 +43,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/score_text" />
-<!--        app:listData="@{viewModel.properties}"-->
+
+
 
         <Button
             android:id="@+id/success_btn"
