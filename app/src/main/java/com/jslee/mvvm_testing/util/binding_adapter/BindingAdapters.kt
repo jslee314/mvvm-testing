@@ -1,6 +1,5 @@
 package com.jslee.mvvm_testing.util.binding_adapter
 
-import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import androidx.core.net.toUri
