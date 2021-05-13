@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.jslee.retrofittesting.fail.FailViewModel" />
+            type="com.jslee.retrofittesting.rslt_network.NetworkViewModel" />
 
     </data>
 

@@ -1,9 +1,9 @@
-package com.jslee.retrofittesting.fail
+package com.jslee.retrofittesting.rslt_network
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 
-class FailViewModel : ViewModel() {
+class NetworkViewModel : ViewModel() {
 
     init {
         Log.d("jjslee", "FailViewModel created!")
