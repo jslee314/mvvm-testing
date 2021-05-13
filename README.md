@@ -14,6 +14,7 @@
 
 
 #### 3) Databinding, Listenerbinding
+<pre><code>{
   <layout ...>
    <data>
        <variable
@@ -21,6 +22,7 @@
            type="com.jslee.retrofittesting.quiz.QuizViewModel"/>
    </data>
    <androidx.constraintlayout..
+   }</code></pre>
 - Data를 View 객체(.xml)에 Data를 직접 연결(Binding)할 수 있음 
 - viewmodel를 view에 직접 binding 해서 데이터 뿐 아니라 
      android:text="@{viewModel.user}"
@@ -33,6 +35,20 @@
 
 
 ####  Connecting to the internet
+1. Retrofit를 사용하여  REST 웹 서비스에 요청을확인하고 결과 받아오기
+- Retrofit를 사용하여 인터넷에 연결 후 값을 가져온다. 보통 Retrofit은 실패, 성공 두가지 콜백메서드 를 사용해서 결과를 가져온다. 
+- 이때 코루틴을 콜백메서드 대신 예외처리만 하면 코루틴을 사용해서 간편하게 구현할 수 있다. 
+- 또한 Moshi 라이브러리르 사용하여 Json형식의 응답 respond 구문을 편리하게 사용할 수 있다. 
+ > (moshi : JSON 문자열을 Kotlin 객체로 변환하는 Android JSON 파서로, Retrofit에는 Moshi와 함께 작동하는 변환기가 있다. 
+   또한 Moshi는 JSON 응답의 키를 동일한 이름을 가진 데이터 개체의 속성과 일치킨다.
+   만약 Json 의 key에 다른 속성 이름을 사용하려면 @Json 어노테이션과 JSON key 이름을 추가합니다. 예: @Json(name = "img_src"))
+2. 받아온 결과 값 보여주기
+- RecyclerView로 결과 보여주기
+- 받아온 값 중 이미지는 Glide 라이브러리 사용
+- 바인딩 어뎁터 
+
+
+3. 값을 가져올때 filtering 하기 (HTTP request/respond)
 
 
 ####  Repository
