@@ -1,6 +1,7 @@
 package com.jslee.mvvm_testing.quiz
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.jslee.mvvm_testing.data.local.dao.ScoreDao
 import com.jslee.mvvm_testing.data.local.dao.UserDao
@@ -41,6 +42,7 @@ class QuizViewModel(val userDataSource: UserDao,
 
     fun onPlusScore(){
         nowScore = nowScore.plus(1)
+        _score.value?.numRightQuiz = nowScore
     }
 
     fun onClickedToNetworkBtn(){

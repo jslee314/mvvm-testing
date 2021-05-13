@@ -51,7 +51,7 @@
             android:id="@+id/now_score_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{@string/score_format(viewModel.score)}"
+            android:text="@{@string/score_format(viewModel.score.numRightQuiz)}"
             app:layout_constraintBottom_toTopOf="@+id/to_network_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
