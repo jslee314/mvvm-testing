@@ -14,8 +14,7 @@
 
 
 #### 3) Databinding, Listenerbinding
-<pre>
-<code>
+```html
   <layout ...>
    <data>
        <variable
@@ -23,8 +22,7 @@
            type="com.jslee.retrofittesting.quiz.QuizViewModel"/>
    </data>
    <androidx.constraintlayout..
- </code>
- </pre>
+```
 - Data를 View 객체(.xml)에 Data를 직접 연결(Binding)할 수 있음 
 - viewmodel를 view에 직접 binding 해서 데이터 뿐 아니라 
      android:text="@{viewModel.user}"
