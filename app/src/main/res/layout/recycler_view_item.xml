@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="image"
-            type="com.jslee.retrofittesting.data.remote.RemoteImg"/>
+            type="com.jslee.mvvm_testing.data.remote.RemoteImg"/>
     </data>
 
     <LinearLayout

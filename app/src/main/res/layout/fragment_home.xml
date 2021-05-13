@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.jslee.retrofittesting.home.HomeViewModel" />
+            type="com.jslee.mvvm_testing.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

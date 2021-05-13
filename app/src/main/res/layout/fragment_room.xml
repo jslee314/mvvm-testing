@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.jslee.retrofittesting.rslt_room.RoomViewModel" />
+            type="com.jslee.mvvm_testing.rslt_room.RoomViewModel" />
 
     </data>
 

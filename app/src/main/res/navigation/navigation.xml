@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/quizFragment"
-        android:name="com.jslee.retrofittesting.quiz.QuizFragment"
+        android:name="com.jslee.mvvm_testing.quiz.QuizFragment"
         android:label="QuizFragment"
         tools:layout="@layout/fragment_quiz">
         <action
@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.jslee.retrofittesting.home.HomeFragment"
+        android:name="com.jslee.mvvm_testing.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/roomFragment"
-        android:name="com.jslee.retrofittesting.rslt_room.RoomFragment"
+        android:name="com.jslee.mvvm_testing.rslt_room.RoomFragment"
         android:label="AnswerFragment"
         tools:layout="@layout/fragment_room">
         <action
@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/networkFragment"
-        android:name="com.jslee.retrofittesting.rslt_network.NetworkFragment"
+        android:name="com.jslee.mvvm_testing.rslt_network.NetworkFragment"
         android:label="NetworkFragment"
         tools:layout="@layout/fragment_network">
         <action
@@ -57,18 +57,18 @@
 
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.jslee.retrofittesting.navDrawer.SettingFragment"
+        android:name="com.jslee.mvvm_testing.navDrawer.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting"/>
 
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.jslee.retrofittesting.navDrawer.AboutFragment"
+        android:name="com.jslee.mvvm_testing.navDrawer.AboutFragment"
         android:label="AboutFragment"
         tools:layout="@layout/fragment_about"/>
     <fragment
         android:id="@+id/networkDetailFragment"
-        android:name="com.jslee.retrofittesting.rslt_network_detail.NetworkDetailFragment"
+        android:name="com.jslee.mvvm_testing.rslt_network_detail.NetworkDetailFragment"
         android:label="NetworkDetailFragment" />
 
 </navigation>

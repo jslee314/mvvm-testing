@@ -1,4 +1,4 @@
-# retrofitTesting
+# mvvm_testing
 --------------------------------------------------------------------------------------------------------
 # Architecture components
 1) UI Controller과 ViewModel 의 역할을 분명히 나누어야함
@@ -15,7 +15,7 @@
    <data>
        <variable
            name="miewModel"
-           type="com.jslee.retrofittesting.quiz.QuizViewModel"/>
+           type="com.jslee.mvvm_testing.quiz.QuizViewModel"/>
    </data>
    <androidx.constraintlayout..
 - Data를 View 객체(.xml)에 Data를 직접 연결(Binding)할 수 있음 

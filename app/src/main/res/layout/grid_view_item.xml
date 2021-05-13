@@ -8,7 +8,7 @@
 <!--        <import type="android.view.View"/>-->
 <!--        <variable-->
 <!--            name="property"-->
-<!--            type="com.jslee.retrofittesting.data.remote.MarsProperty"/>-->
+<!--            type="com.jslee.mvvm_testing.data.remote.MarsProperty"/>-->
 <!--    </data>-->
 
     <FrameLayout
