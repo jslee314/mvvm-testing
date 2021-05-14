@@ -4,7 +4,7 @@ import android.app.Application
 import com.jslee.mvvm_testing.data.dataSource.AppDataSource
 import com.jslee.mvvm_testing.data.dataSource.LocalDataSource
 import com.jslee.mvvm_testing.data.dataSource.RemoteDataSource
-import com.jslee.mvvm_testing.data.local.RoomDB
+import com.jslee.mvvm_testing.data.local.AppDatabase
 
 class AppRepository private constructor(application: Application) {
     private val remoteDataSource: AppDataSource
@@ -13,7 +13,7 @@ class AppRepository private constructor(application: Application) {
 
 
     init {
-        val database = RoomDB.getInstance(application)
+        val database = AppDatabase.getInstance(application)
 
         remoteDataSource = RemoteDataSource
         localDataSource = LocalDataSource(database.scoreDao, database.userDao)

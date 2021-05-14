@@ -10,7 +10,7 @@ import com.jslee.mvvm_testing.data.local.entity.Score
 import com.jslee.mvvm_testing.data.local.entity.User
 
 @Database(entities = [User::class, Score::class], version = 1, exportSchema = false)
-abstract class RoomDB : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
     abstract val scoreDao: ScoreDao
     abstract val userDao: UserDao
@@ -22,16 +22,16 @@ abstract class RoomDB : RoomDatabase() {
         // 이 변수는 한번 생성되면 DB에 대한 참조를 계속 유지
         // 이렇게 하면 계산비용이 많이드는 DB에 대한 연결을 반복적으로 하지 않아도 됨.
         @Volatile
-        private var INSTANCE: RoomDB? = null
+        private var INSTANCE: AppDatabase? = null
 
-        fun getInstance(context: Context): RoomDB {
+        fun getInstance(context: Context): AppDatabase {
             synchronized(this) {
                 var instance =
                     INSTANCE
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                        context.applicationContext, RoomDB::class.java, "database")
+                        context.applicationContext, AppDatabase::class.java, "database")
                         .fallbackToDestructiveMigration()
                         .build()
                     INSTANCE = instance
