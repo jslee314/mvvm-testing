@@ -8,61 +8,77 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jslee.mvvm_testing.data.remote.MarsProperty
 import com.jslee.mvvm_testing.databinding.GridViewItemBinding
 
-class PhotoGridAdapter: ListAdapter<MarsProperty, PhotoGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
-
-    class MarsPropertyViewHolder(private var binding: GridViewItemBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(marsProperty: MarsProperty) {
-            binding.property = marsProperty
-            //이는 데이터 바인딩이 즉시 실행되도록하기 때문에 중요
-            //RecyclerView가 올바른 뷰 크기 측정을 수행 할 수 있음
-            binding.executePendingBindings()
-        }
-    }
+/**
+ * [RecyclerView]: ListView와는 다르게 RecyclerView는 이름에서 알 수 있듯이 재활용이 가능한 뷰이다.
+ * ListView는 스크롤할때마다 맨 위의 뷰 객체가 삭제되고, 아래 나타날 객체는 새로 생성하는원리로.. 스크롤을 움직이면 삭제/생성이 반복된다.
+ * 반면 RecyclerView는 사용자가 아래로 스크롤 한다고 가정했을 때,
+ * 맨 위에 존재해서 이제 곧 사라질 뷰 객체를 삭제 하지않고, 아랫쪽에서 새로 나타나날 파란색 뷰 위치로 객체를 이동시킨다.
+ * 즉 뷰 객체 자체를 재사용 하는 것인데, 중요한 점은 뷰 객체를 재사용 할 뿐이지 뷰 객체가 담고 있는 데이터(채팅방 이름)는 새로 갱신된다는 것이다.
+ * 어쨋거나 뷰 객체를 새로 생성하지는 않으므로 효율적인 것이다.
+ *
+ * [ViewHolder] : 스크롤을 내릴때 맨 위에 존재해 사라진 객체는 맨 아래로 이동하여 재활용되고잇는데,
+ * 실제 데이터의 갯수가 아닌, 화면에 '보여지는 ** 개' 뷰 객체를 만들어서 가지고 (재활용 하고) 있는것이 ViewHolder 이다.
+ *
+ */
+class PhotoGridAdapter(private val propertyOnClickListener: MarsOnClickListener): // 주생성자 선언: OnClickListener 라는 객체 변수에 값을 무조건 설정해야만 객체가 생성될 수 있도록 강제
+                    ListAdapter<MarsProperty, PhotoGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<MarsProperty>() {
+        // // 이전 값과 같은지 비교(value와 데이터 모두 비교)
         override fun areItemsTheSame(oldItem: MarsProperty, newItem: MarsProperty): Boolean {
             return oldItem === newItem
         }
 
+        // 가장 먼저 실행되는 함수로, 뿌려줄 데이터의 전체 길이를 리턴
         override fun areContentsTheSame(oldItem: MarsProperty, newItem: MarsProperty): Boolean {
             return oldItem.id == newItem.id
         }
     }
 
-
     /**
-     * @내용 : 새로운 [RecyclerView] 항목보기 만들기 (layout manager에서 호출 함)
-     *        어댑터의 데이터 세트를 초기화
-     *        항목 구성을 위해 사용할 ViewHolder 객체가 필요할 때 호출되는 메서드
-     * @최초작성일 : 2021-05-13 오후 1:56
-     * @작성자 : 이재선
-     **/
+     * [ViewHolder]가 생성되는 함수다. 여기서 ViewHolder객체를 만들어 주면 된다. (layout manager에 의해 호출 됨)
+     * 화면의 보여지는 뷰 객체 갯수 + 2~3개 정도 만큼만 호출되고 더이상 호출되지 않는다. **/
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarsPropertyViewHolder {
-        return MarsPropertyViewHolder(GridViewItemBinding.inflate(LayoutInflater.from(parent.context)))
-
+        val view = GridViewItemBinding.inflate(LayoutInflater.from(parent.context))
+        return MarsPropertyViewHolder(view)
     }
 
     /**
-     * @내용 : [RecyclerView] 항목의 내용을 대체 (layout manager에 의해 호출 됨).
-     *        어댑터의 데이터 세트를 초기화
-     * @최초작성일 : 2021-05-13 오후 1:56
-     * @작성자 : 이재선
-     **/
+     * 생성된 [ViewHolder]에 데이터를 바인딩 해주는 함수 (layout manager에 의해 호출 됨)
+     * 스크롤을 움직일때마다 데이터 바인딩이 새롭게 필요한데, 그때 마다 계속 호출된다.  **/
     override fun onBindViewHolder(holder: MarsPropertyViewHolder, position: Int) {
-        val marsProperty = getItem(position)
-//        holder.itemView.setOnClickListener {
-//            onClickListener.onClick(marsProperty)
-//        }
+        val marsProperty = getItem(position) // position번째 있는 아이템(marsProperty 객체)
+
+        /**
+         * 뷰홀더가 클릭되었을 때 수행된다.
+         * onClickListener 클래스의 onClick 함수의 파라미터로
+         * 클릭한 position에 있는 객체 marsProperty를 함께 넘겨준다. */
+        holder.itemView.setOnClickListener {
+            propertyOnClickListener.onClick(marsProperty)
+        }
+
         holder.bind(marsProperty)
     }
 
+    /**
+     *  맨 처음 화면에 보여질 **개의 뷰객체를 기억하고 있을(홀딩) 객체가가  MarsPropertyViewHolder이다.
+     *  이렇게 만들어져 홀딩하고 있는 객체는 스크롤을 내릴때 삭제/생성되지 않고 재활용된다. */
+    class MarsPropertyViewHolder(private var binding: GridViewItemBinding): RecyclerView.ViewHolder(binding.root) {
+        fun bind(marsProperty: MarsProperty) {
+            //이는 데이터 바인딩이 즉시 실행되도록 해서, RecyclerView가 올바른 뷰 크기 측정을 수행 할 수 있음
+            // 또한, 스크롤을 내릴때마다 이부분만 바꿔주면 뷰 객체는 그대로이면서 데이터만 바뀌게 되는것이다.
+            binding.property = marsProperty
+            binding.executePendingBindings()
+        }
+    }
 
-//    /**
-//     * [RecyclerView] 항목에 대한 클릭을 처리하는 사용자 정의 리스너.
-//     * 현재 항목과 관련된 [MarsProperty]를 [onClick] 함수에 전달합니다.
-//     * @param clickListener : 현재 [MarsProperty]와 함께 호출 될 람다
-//     */
-//    class OnClickListener(val clickListener: (marsProperty: MarsProperty) -> Unit) {
-//        fun onClick(marsProperty:MarsProperty) = clickListener(marsProperty)
-//    }
+
+    /**
+     * [RecyclerView] 항목에 대한 클릭을 처리하는 사용자 정의 리스너.
+     * 클릭한 position에 있는 객체 marsProperty를 [onClick] 함수에 전달한다.
+     * [clkListener] : 현재 [MarsProperty]와 함께 호출 될 람다
+     */
+    class MarsOnClickListener(val clkListener: (marsProperty: MarsProperty) -> Unit) {
+        fun onClick(marsProperty:MarsProperty) = clkListener(marsProperty)
+    }
 }

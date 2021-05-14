@@ -8,4 +8,14 @@
     <string name="score_format">선택한 점수: %d</string>
 
 
+    <!-- ==============  for  NetworkDetailFragment  ================= -->
+    <string name="type_rent">For Rent \n(랜트 </string>
+    <string name="type_sale">For Sale \n(판매</string>
+
+    <string name="display_type">%s 중 입니다)</string>
+
+    <string name="display_price_monthly_rental">$%,.0f/월</string>
+    <string name="display_price">$%,.0f 달러</string>
+
+
 </resources>
