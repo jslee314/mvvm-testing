@@ -81,11 +81,11 @@
 > - 바인딩 어댑터는 @BindingAdapter 어노테이션을 사용한다.
   
 
-**3. 값을 가져올때 filtering 하기 (HTTP request/respond)**
+**3. 값을 가져올때 filtering 하기 (HTTP request/respond)**  
 - json data의 값에 따라서 특정 이미지 아이콘 GONE 혹은 VISIBLE 결정
   android:visibility="@{property.rental ? View.GONE : View.VISIBLE}"
 
-- **query parameter** (option(filter)) 조건에 따라 RecyclerView에 값 뿌려주기 (필터링)
+- **query parameter** (option(filter)) 조건에 따라 RecyclerView에 값 뿌려주기 (필터링)  
   ex) https://android-kotlin-fun-mars-server.appspot.com/realestate?filter=buy
 
 -  RecyclerView 아이템 클릭시 해당 아이템에 대한 자세한 내용을 보는 Fragment로 넘어간다.  
@@ -95,6 +95,20 @@
 
 
 ####  Repository
+- **Room을 사용해서 오프라인 캐시(Offline cache) 구현**  
+  기본적으로 Retrofit으로 가져온 데이터를 표현하기위해서는 당연히 네트워크 연결이 필요하다.  
+  이때, 오프라인 캐싱(Offline cache)을 구현하면, 네트워크 대신 로컬 데이터베이스의 결과를 표시할수 있다.  
+  그래서 사용자는 기기가 오프라인 상태이거나 네트워크 연결이 느린 경우에도 앱을 사용할 수 있습니다.  
+  Offline cache를 구현하려면 Room 데이터베이스를 사용하여 인터넷에서 가져온 데이터를 기기의 로컬 저장소에 영구 저장해야 한다.  
+ 
+ 
+- **Repository 패턴을 통해 앱의 DATA와 나머지 코드들을 나눔**
+  [Repository] 패턴을 사용하여 Room 데이터베이스에 액세스하고 관리합니다. 
+  이는 [데이터 소스]를 [앱의 나머지]에서 분리하는 "디자인 패턴"이다.
+  이 기술은 나머지 앱이 data에 액세스하는 데 사용할 깨끗한 API를 제공한다.
+
+
+
 
 
 --------------------------------------------------------------------------------------------------------
