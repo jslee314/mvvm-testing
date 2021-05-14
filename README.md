@@ -67,6 +67,8 @@
 > 맨 위에 존재해서 이제 곧 사라질 뷰 객체를 삭제 하지않고, 아랫쪽에서 새로 나타나날 파란색 뷰 위치로 객체를 이동시킨다.
 > - 즉 뷰 객체 자체를 재사용 하는 것인데, 중요한 점은 뷰 객체를 재사용 할 뿐이지 뷰 객체가 담고 있는 데이터(채팅방 이름)는 새로 갱신된다는 것이다.
 > 어쨋거나 뷰 객체를 새로 생성하지는 않으므로 효율적인 것이다.
+> [ViewHolder] : 스크롤을 내릴때 맨 위에 존재해 사라진 객체는 맨 아래로 이동하여 재활용되고잇는데, 
+> 실제 데이터의 갯수가 아닌, 화면에 '보여지는 ** 개' 뷰 객체를 만들어서 가지고 (재활용 하고) 있는것이 ViewHolder 이다.
 
 
 > Binding adapters(바인딩 어뎁터) 
@@ -84,7 +86,9 @@
 - **query parameter** (option(filter)) 조건에 따라 RecyclerView에 값 뿌려주기 (필터링)
   ex) https://android-kotlin-fun-mars-server.appspot.com/realestate?filter=buy
 
-- 
+-  RecyclerView 아이템 클릭시 해당 아이템에 대한 자세한 내용을 보는 Fragment로 넘어간다.  
+  RecyclerView 항목에 대한 클릭을 처리하는 사용자 정의 리스너 클래스를 만들고 클릭한 position에 있는 아이템 객체를 클래스에 구현한 함수 파라미터로 전달한다. 
+  해당 리스너에 RecyclerView 아이템 객체가 전달되면, LiveData에 저장되고,  해당 LiveData 를 옵저빙하던 Observer에 의해 다음 Fragment 로 넘어가게 된다. 
 
 
 ####  Repository
