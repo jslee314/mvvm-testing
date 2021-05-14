@@ -35,7 +35,8 @@
 
 
 ####  Connecting to the internet
-1. Retrofit를 사용하여  REST 웹 서비스에 요청을확인하고 결과 받아오기
+
+**1. Retrofit를 사용하여  REST 웹 서비스에 요청을확인하고 결과 받아오기**
 - Retrofit를 사용하여 인터넷에 연결 후 값을 가져온다. 
 - 보통 Retrofit은 실패, 성공 두가지 콜백메서드를 사용해서 결과를 가져온다. 
 - 이때 코루틴을 콜백메서드 대신 예외처리만 하면 코루틴을 사용해서 간편하게 구현할 수 있다. 
@@ -45,7 +46,8 @@
  > - 또한 Moshi는 JSON 응답의 키를 동일한 이름을 가진 데이터 개체의 속성과 일치킨다.
  > - 만약 Json 의 key에 다른 속성 이름을 사용하려면 @Json 어노테이션과 JSON key 이름을 추가합니다. 예: @Json(name = "img_src")
 
-2. 받아온 결과 값 보여주기
+
+**2. 받아온 결과 값 보여주기**
 - 받아온 값 중 이미지는 Glide 라이브러리 사용 하여 값을 뿌려준다. 
 > Glide 
 > - 이미지 관리 프로세스를 단순화할 수 있는 라이브러리
@@ -65,7 +67,14 @@
   
 
 
-3. 값을 가져올때 filtering 하기 (HTTP request/respond)
+**3. 값을 가져올때 filtering 하기 (HTTP request/respond)**
+- json data의 값에 따라서 특정 이미지 아이콘 GONE 혹은 VISIBLE 결정
+  android:visibility="@{property.rental ? View.GONE : View.VISIBLE}"
+
+- **query parameter** (option(filter)) 조건에 따라 RecyclerView에 값 뿌려주기 (필터링)
+  ex) https://android-kotlin-fun-mars-server.appspot.com/realestate?filter=buy
+
+- 
 
 
 ####  Repository
