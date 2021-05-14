@@ -10,6 +10,7 @@
 
 - ViewModelFactory 사용 : ViewModel의 기본 생성자 외 매개변수가 있는 생성자로 객체를 생성하기 위해
 
+
 #### 2) UI Controller(lifecycle)는 Observer를 통해 LiveData를 관찰하고잇어서 변경여부를 알 수 있음
 
 
@@ -32,6 +33,7 @@
 
 
 ####  Room database and coroutines
+
 
 
 ####  Connecting to the internet
@@ -57,8 +59,9 @@
 > - Glide 요청에 옵션을 추가하려면 apply () 메서드를 사용합니다.
 > - 예를 들어, placeholder ()와 함께 apply ()를 사용하여 로딩 drawable를 지정하고, error ()와 함께 apply ()를 사용하여 오류drawable를 지정한다.
   
-- RecyclerView로 결과를 보여준다. 
-- 리스트의 속성이 변경 될 때 마다 업데이트하려면, RecyclerView와 레이아웃 사이에 Binding adapter를 사용하면 된다. 
+  
+- RecyclerView로 결과를 보여준다.  
+  리스트의 속성이 변경 될 때 마다 업데이트하려면, RecyclerView와 레이아웃 사이에 Binding adapter를 사용하면 된다. 
 
 > RecyclerView
 > - ListView와는 다르게 RecyclerView는 이름에서 알 수 있듯이 재활용이 가능한 뷰이다.
@@ -78,7 +81,6 @@
 > - 바인딩 어댑터는 @BindingAdapter 어노테이션을 사용한다.
   
 
-
 **3. 값을 가져올때 filtering 하기 (HTTP request/respond)**
 - json data의 값에 따라서 특정 이미지 아이콘 GONE 혹은 VISIBLE 결정
   android:visibility="@{property.rental ? View.GONE : View.VISIBLE}"
@@ -88,7 +90,8 @@
 
 -  RecyclerView 아이템 클릭시 해당 아이템에 대한 자세한 내용을 보는 Fragment로 넘어간다.  
   RecyclerView 항목에 대한 클릭을 처리하는 사용자 정의 리스너 클래스를 만들고 클릭한 position에 있는 아이템 객체를 클래스에 구현한 함수 파라미터로 전달한다. 
-  해당 리스너에 RecyclerView 아이템 객체가 전달되면, LiveData에 저장되고,  해당 LiveData 를 옵저빙하던 Observer에 의해 다음 Fragment 로 넘어가게 된다. 
+  해당 리스너에 RecyclerView 아이템 객체가 전달되면, LiveData에 저장되고,  해당 LiveData 를 옵저빙하던 Observer에 의해 다음 Fragment 로 넘어가게 된다.  
+  RecyclerView 아이템 객체를 다음Fragment로 넘길때는, Navigation component의 Safe Args plugin을 사용한다
 
 
 ####  Repository
