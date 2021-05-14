@@ -20,6 +20,11 @@ class NetworkViewModel : ViewModel() {
     val properties: LiveData<List<MarsProperty>>
         get() = _properties
 
+    /**
+     * 다음 프레그 */
+    private val _navigateToSelectedProperty = MutableLiveData<MarsProperty>()
+    val navigateToSelectedProperty: LiveData<MarsProperty>
+        get() = _navigateToSelectedProperty
 
     init {
         //getMarsRealEstateProperties()
@@ -63,5 +68,19 @@ class NetworkViewModel : ViewModel() {
      * @param은 웹 서버 요청의 일부로 전송되는 [MarsApiFilter]를 필터링합니다.  */
     fun updateFilter(filter: MarsApiFilter) {
         getMarsRealEstateProperties(filter)
+    }
+
+    /**
+     * RecyclerView의 하나의 아이템을 클릭하면
+     * [_navigateToSelectedProperty] [MutableLiveData]를 설정한다.
+     * [marsProperty]:  클릭 된 MarsProperty */
+    fun displayPropertyDetails(marsProperty: MarsProperty) {
+        _navigateToSelectedProperty.value = marsProperty
+    }
+
+    /**
+     * Navigation이 수행 되면 [_navigateToSelectedProperty] 를 null로 설정      */
+    fun displayPropertyDetailsComplete() {
+        _navigateToSelectedProperty.value = null
     }
 }

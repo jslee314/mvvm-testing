@@ -13,7 +13,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context="com.jslee.mvvm_testing.MainActivity">
 
         <TextView
             android:id="@+id/fail_text"
@@ -49,6 +50,7 @@
             app:spanCount="2"
             tools:itemCount="16"
             tools:BA_listitem="@layout/grid_view_item" />
+<!--        layoutManager : 스크롤을 위아래로할지 좌우로할지 결정하는 등의 역할-->
 
         <ImageView
             android:id="@+id/status_image"

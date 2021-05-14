@@ -28,10 +28,8 @@ class RoomFragment : Fragment() {
     private lateinit var viewModel: RoomViewModel
     private lateinit var viewModelFactory: RoomViewModelFactory
 
-
     /**
-    *  데이터 바인딩으로 레이아웃을 확장함
-    **/
+    *  데이터 바인딩으로 레이아웃을 확장함 **/
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
