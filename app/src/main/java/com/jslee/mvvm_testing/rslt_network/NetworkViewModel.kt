@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jslee.mvvm_testing.data.remote.MarsProperty
-import com.jslee.mvvm_testing.util.retrofit.MarsApiFilter
-import com.jslee.mvvm_testing.util.retrofit.retrofitCallStatus
-import com.jslee.mvvm_testing.util.retrofit.RetrofitApi
+import com.jslee.mvvm_testing.data.remote.GroundProperty
+import com.jslee.mvvm_testing.data.GroundApiFilter
+import com.jslee.mvvm_testing.data.vo.retrofitCallStatus
+import com.jslee.mvvm_testing.util.api.GroundApi
 import kotlinx.coroutines.launch
 
 class NetworkViewModel : ViewModel() {
@@ -16,27 +16,27 @@ class NetworkViewModel : ViewModel() {
     val status: LiveData<retrofitCallStatus>  // "외부 불변" LiveData
         get() = _status
 
-    private val _properties = MutableLiveData<List<MarsProperty>>()
-    val properties: LiveData<List<MarsProperty>>
+    private val _properties = MutableLiveData<List<GroundProperty>>()
+    val properties: LiveData<List<GroundProperty>>
         get() = _properties
 
     /**
      * 다음 프레그 */
-    private val _navigateToSelectedProperty = MutableLiveData<MarsProperty>()
-    val navigateToSelectedProperty: LiveData<MarsProperty>
+    private val _navigateToSelectedProperty = MutableLiveData<GroundProperty>()
+    val navigateToSelectedProperty: LiveData<GroundProperty>
         get() = _navigateToSelectedProperty
 
     init {
         //getMarsRealEstateProperties()
-        getMarsRealEstateProperties(MarsApiFilter.SHOW_ALL)
+        getGroundRealEstateProperties(GroundApiFilter.SHOW_ALL)
     }
 
 
-    private fun getMarsRealEstateProperties(filter:MarsApiFilter ){
+    private fun getGroundRealEstateProperties(filter: GroundApiFilter){
         viewModelScope.launch {
             _status.value = retrofitCallStatus.LOADING
             try {
-                _properties.value = RetrofitApi.retrofitService.getProperties(filter.value)
+                _properties.value = GroundApi.retrofitService.getProperties(filter.value)
                 _status.value = retrofitCallStatus.DONE
             } catch (e: Exception) {
                 _status.value = retrofitCallStatus.ERROR
@@ -47,12 +47,12 @@ class NetworkViewModel : ViewModel() {
     }
 
 
-    private fun getMarsRealEstateProperties() {
+    private fun getGroundRealEstateProperties() {
         viewModelScope.launch {
             _status.value = retrofitCallStatus.LOADING
 
             try {
-                _properties.value = RetrofitApi.retrofitService.getProperties()
+                _properties.value = GroundApi.retrofitService.getProperties()
                 _status.value = retrofitCallStatus.DONE
 
             } catch (e: Exception) {
@@ -63,19 +63,19 @@ class NetworkViewModel : ViewModel() {
     }
 
     /**
-     * [getMarsRealEstateProperties]를 호출하여 새 필터로 데이터를 쿼리하여
+     * [getGroundRealEstateProperties]를 호출하여 새 필터로 데이터를 쿼리하여
      * 웹 서비스에 대한 데이터 세트 필터를 업데이트합니다.
-     * @param은 웹 서버 요청의 일부로 전송되는 [MarsApiFilter]를 필터링합니다.  */
-    fun updateFilter(filter: MarsApiFilter) {
-        getMarsRealEstateProperties(filter)
+     * @param은 웹 서버 요청의 일부로 전송되는 [GroundApiFilter]를 필터링합니다.  */
+    fun updateFilter(filter: GroundApiFilter) {
+        getGroundRealEstateProperties(filter)
     }
 
     /**
      * RecyclerView의 하나의 아이템을 클릭하면
      * [_navigateToSelectedProperty] [MutableLiveData]를 설정한다.
-     * [marsProperty]:  클릭 된 MarsProperty */
-    fun displayPropertyDetails(marsProperty: MarsProperty) {
-        _navigateToSelectedProperty.value = marsProperty
+     * [groundProperty]:  클릭 된 GroundProperty */
+    fun displayPropertyDetails(groundProperty: GroundProperty) {
+        _navigateToSelectedProperty.value = groundProperty
     }
 
     /**

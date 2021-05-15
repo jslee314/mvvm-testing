@@ -6,17 +6,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.jslee.mvvm_testing.R
-import com.jslee.mvvm_testing.data.remote.MarsProperty
+import com.jslee.mvvm_testing.data.remote.GroundProperty
 
-class NetworkDetailViewModel(marsProperty: MarsProperty,
+class NetworkDetailViewModel(groundProperty: GroundProperty,
                              app: Application) : AndroidViewModel(app) {
 
-    private val _selectedProperty = MutableLiveData<MarsProperty>()
-    val selectedProperty: LiveData<MarsProperty>
+    private val _selectedProperty = MutableLiveData<GroundProperty>()
+    val selectedProperty: LiveData<GroundProperty>
         get() = _selectedProperty
 
     init {
-        _selectedProperty.value = marsProperty
+        _selectedProperty.value = groundProperty
     }
 
 

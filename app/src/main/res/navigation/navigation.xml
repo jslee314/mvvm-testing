@@ -61,7 +61,7 @@
         android:label="NetworkDetailFragment">
         <argument
             android:name="selectedProperty"
-            app:argType="com.jslee.mvvm_testing.data.remote.MarsProperty" />
+            app:argType="com.jslee.mvvm_testing.data.remote.GroundProperty" />
     </fragment>
 
     <fragment
@@ -71,10 +71,10 @@
         tools:layout="@layout/fragment_setting"/>
 
     <fragment
-        android:id="@+id/aboutFragment"
-        android:name="com.jslee.mvvm_testing.navDrawer.AboutFragment"
-        android:label="AboutFragment"
-        tools:layout="@layout/fragment_about"/>
+        android:id="@+id/videoFragment"
+        android:name="com.jslee.mvvm_testing.video.VideoFragment"
+        android:label="VideoFragment"
+        tools:layout="@layout/fragment_video"/>
 
 
 </navigation>

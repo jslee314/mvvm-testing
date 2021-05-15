@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.jslee.mvvm_testing.R
-import com.jslee.mvvm_testing.data.remote.MarsProperty
+import com.jslee.mvvm_testing.data.remote.GroundProperty
 import com.jslee.mvvm_testing.rslt_network.PhotoGridAdapter
-import com.jslee.mvvm_testing.util.retrofit.retrofitCallStatus
+import com.jslee.mvvm_testing.data.vo.retrofitCallStatus
 
 /**
  * Glide 라이브러리를 사용해서 이미지를 로드하는 기능
@@ -34,11 +34,20 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
     }
 }
 
-/** [MarsProperty] 데이터가없는 경우 (데이터가 null) [RecyclerView]를 숨기고
+/**
+ * Glide를 사용하여 URL에서 이미지를 표시하는 데 사용되는 바인딩 어댑터 */
+@BindingAdapter("BA_set_imageUrl")
+fun setImageUrl(imageView: ImageView, url: String) {
+    Glide.with(imageView.context)
+        .load(url)
+        .into(imageView)
+}
+
+/** [GroundProperty] 데이터가없는 경우 (데이터가 null) [RecyclerView]를 숨기고
  * 그렇지 않으면 표시 하는 기능
  */
 @BindingAdapter("BA_listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<MarsProperty>?) {
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<GroundProperty>?) {
     val adapter = recyclerView.adapter as PhotoGridAdapter
     adapter.submitList(data)
 }
@@ -66,4 +75,19 @@ fun bindStatus(statusImageView: ImageView, status: retrofitCallStatus?) {
         }
     }
 }
+
+
+/**
+ * Binding adapter used to hide the spinner once data is available.
+ */
+@BindingAdapter("BA_isNetworkError", "BA_playlist")
+fun hideIfNetworkError(view: View, isNetWorkError: Boolean, playlist: Any?) {
+    view.visibility = if (playlist != null) View.GONE else View.VISIBLE
+
+    if(isNetWorkError) {
+        view.visibility = View.GONE
+    }
+}
+
+
 

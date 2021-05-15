@@ -6,14 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.jslee.mvvm_testing.data.local.dao.ScoreDao
 import com.jslee.mvvm_testing.data.local.dao.UserDao
+import com.jslee.mvvm_testing.data.local.dao.VideoDao
+import com.jslee.mvvm_testing.data.local.entity.Video
 import com.jslee.mvvm_testing.data.local.entity.Score
 import com.jslee.mvvm_testing.data.local.entity.User
 
-@Database(entities = [User::class, Score::class], version = 1, exportSchema = false)
+@Database(entities = [User::class, Score::class, Video::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract val scoreDao: ScoreDao
     abstract val userDao: UserDao
+    abstract val videoDao: VideoDao
 
     // 이 RoomDB 클래스는 DB를 제공할때 한번만 쓰면 되기때문에 인스턴스화 할 필요없이 companion 객체로 만듦
     companion object {
