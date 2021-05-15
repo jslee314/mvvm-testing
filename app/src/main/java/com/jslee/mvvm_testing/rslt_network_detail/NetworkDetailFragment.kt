@@ -27,8 +27,8 @@ class NetworkDetailFragment : Fragment(){
     private fun setUpBinding(){
         val application = requireNotNull(this.activity).application
 
-        val marsProperty = NetworkDetailFragmentArgs.fromBundle(arguments!!).selectedProperty
-        viewModelFactory = NetworkDetailViewModelFactory(marsProperty, application)
+        val groundProperty = NetworkDetailFragmentArgs.fromBundle(arguments!!).selectedProperty
+        viewModelFactory = NetworkDetailViewModelFactory(groundProperty, application)
 
         viewModel =  ViewModelProvider(this, viewModelFactory).get(NetworkDetailViewModel::class.java)
         binding.viewModel = viewModel

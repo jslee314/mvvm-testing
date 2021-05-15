@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jslee.mvvm_testing.data.remote.MarsProperty
+import com.jslee.mvvm_testing.data.remote.GroundProperty
 import com.jslee.mvvm_testing.databinding.GridViewItemBinding
 
 /**
@@ -21,16 +21,16 @@ import com.jslee.mvvm_testing.databinding.GridViewItemBinding
  *
  */
 class PhotoGridAdapter(private val propertyOnClickListener: MarsOnClickListener): // 주생성자 선언: OnClickListener 라는 객체 변수에 값을 무조건 설정해야만 객체가 생성될 수 있도록 강제
-                    ListAdapter<MarsProperty, PhotoGridAdapter.MarsPropertyViewHolder>(DiffCallback) {
+                    ListAdapter<GroundProperty, PhotoGridAdapter.GroundPropertyViewHolder>(DiffCallback) {
 
-    companion object DiffCallback : DiffUtil.ItemCallback<MarsProperty>() {
+    companion object DiffCallback : DiffUtil.ItemCallback<GroundProperty>() {
         // // 이전 값과 같은지 비교(value와 데이터 모두 비교)
-        override fun areItemsTheSame(oldItem: MarsProperty, newItem: MarsProperty): Boolean {
+        override fun areItemsTheSame(oldItem: GroundProperty, newItem: GroundProperty): Boolean {
             return oldItem === newItem
         }
 
         // 가장 먼저 실행되는 함수로, 뿌려줄 데이터의 전체 길이를 리턴
-        override fun areContentsTheSame(oldItem: MarsProperty, newItem: MarsProperty): Boolean {
+        override fun areContentsTheSame(oldItem: GroundProperty, newItem: GroundProperty): Boolean {
             return oldItem.id == newItem.id
         }
     }
@@ -38,36 +38,36 @@ class PhotoGridAdapter(private val propertyOnClickListener: MarsOnClickListener)
     /**
      * [ViewHolder]가 생성되는 함수다. 여기서 ViewHolder객체를 만들어 주면 된다. (layout manager에 의해 호출 됨)
      * 화면의 보여지는 뷰 객체 갯수 + 2~3개 정도 만큼만 호출되고 더이상 호출되지 않는다. **/
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarsPropertyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroundPropertyViewHolder {
         val view = GridViewItemBinding.inflate(LayoutInflater.from(parent.context))
-        return MarsPropertyViewHolder(view)
+        return GroundPropertyViewHolder(view)
     }
 
     /**
      * 생성된 [ViewHolder]에 데이터를 바인딩 해주는 함수 (layout manager에 의해 호출 됨)
      * 스크롤을 움직일때마다 데이터 바인딩이 새롭게 필요한데, 그때 마다 계속 호출된다.  **/
-    override fun onBindViewHolder(holder: MarsPropertyViewHolder, position: Int) {
-        val marsProperty = getItem(position) // position번째 있는 아이템(marsProperty 객체)
+    override fun onBindViewHolder(holder: GroundPropertyViewHolder, position: Int) {
+        val groundProperty = getItem(position) // position번째 있는 아이템(groundProperty 객체)
 
         /**
          * 뷰홀더가 클릭되었을 때 수행된다.
          * onClickListener 클래스의 onClick 함수의 파라미터로
-         * 클릭한 position에 있는 객체 marsProperty를 함께 넘겨준다. */
+         * 클릭한 position에 있는 객체 groundProperty를 함께 넘겨준다. */
         holder.itemView.setOnClickListener {
-            propertyOnClickListener.onClick(marsProperty)
+            propertyOnClickListener.onClick(groundProperty)
         }
 
-        holder.bind(marsProperty)
+        holder.bind(groundProperty)
     }
 
     /**
-     *  맨 처음 화면에 보여질 **개의 뷰객체를 기억하고 있을(홀딩) 객체가가  MarsPropertyViewHolder이다.
+     *  맨 처음 화면에 보여질 **개의 뷰객체를 기억하고 있을(홀딩) 객체가가  GroundPropertyViewHolder이다.
      *  이렇게 만들어져 홀딩하고 있는 객체는 스크롤을 내릴때 삭제/생성되지 않고 재활용된다. */
-    class MarsPropertyViewHolder(private var binding: GridViewItemBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(marsProperty: MarsProperty) {
+    class GroundPropertyViewHolder(private var binding: GridViewItemBinding): RecyclerView.ViewHolder(binding.root) {
+        fun bind(groundProperty: GroundProperty) {
             //이는 데이터 바인딩이 즉시 실행되도록 해서, RecyclerView가 올바른 뷰 크기 측정을 수행 할 수 있음
             // 또한, 스크롤을 내릴때마다 이부분만 바꿔주면 뷰 객체는 그대로이면서 데이터만 바뀌게 되는것이다.
-            binding.property = marsProperty
+            binding.property = groundProperty
             binding.executePendingBindings()
         }
     }
@@ -75,10 +75,10 @@ class PhotoGridAdapter(private val propertyOnClickListener: MarsOnClickListener)
 
     /**
      * [RecyclerView] 항목에 대한 클릭을 처리하는 사용자 정의 리스너.
-     * 클릭한 position에 있는 객체 marsProperty를 [onClick] 함수에 전달한다.
-     * [clkListener] : 현재 [MarsProperty]와 함께 호출 될 람다
+     * 클릭한 position에 있는 객체 groundProperty를 [onClick] 함수에 전달한다.
+     * [clkListener] : 현재 [GroundProperty]와 함께 호출 될 람다
      */
-    class MarsOnClickListener(val clkListener: (marsProperty: MarsProperty) -> Unit) {
-        fun onClick(marsProperty:MarsProperty) = clkListener(marsProperty)
+    class MarsOnClickListener(val clkListener: (groundProperty: GroundProperty) -> Unit) {
+        fun onClick(groundProperty:GroundProperty) = clkListener(groundProperty)
     }
 }

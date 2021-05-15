@@ -1,4 +1,6 @@
-package com.jslee.mvvm_testing.util.retrofit
+@file:JvmName("RetrofitServiceKt")
+
+package com.jslee.mvvm_testing.util.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -26,9 +28,11 @@ private val retrofit = Retrofit.Builder()
 
 /**
  * 지연 초기화 된 Retrofit 서비스를 노출하는
- * 공개 Api 객체[RetrofitApi]
+ * 공개 Api 객체[GroundApi]
+ * object를 사용하면 싱글턴(Singleton) 패턴이 적용되어 객체가 한번만 생성
  */
-object RetrofitApi {
+object GroundApi {
+
     val retrofitService : RetrofitService by lazy {
             retrofit.create(RetrofitService::class.java)
     }

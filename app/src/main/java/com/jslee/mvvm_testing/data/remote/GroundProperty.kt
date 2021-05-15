@@ -21,7 +21,7 @@ import kotlinx.android.parcel.Parcelize
 //...]
  **/
 @Parcelize
-data class MarsProperty (
+data class GroundProperty (
 
         val id: String,
 

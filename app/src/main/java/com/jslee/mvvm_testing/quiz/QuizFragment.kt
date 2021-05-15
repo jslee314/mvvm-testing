@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.jslee.mvvm_testing.R
 import com.jslee.mvvm_testing.databinding.FragmentQuizBinding
-import com.jslee.mvvm_testing.data.local.RoomDB
+import com.jslee.mvvm_testing.data.local.AppDatabase
 
 
 class QuizFragment : Fragment() {
@@ -31,8 +31,8 @@ class QuizFragment : Fragment() {
     private fun setUpBinding(){
         val application = requireNotNull(this.activity).application
 
-        val userDao = RoomDB.getInstance(application).userDao
-        val scoreDao = RoomDB.getInstance(application).scoreDao
+        val userDao = AppDatabase.getInstance(application).userDao
+        val scoreDao = AppDatabase.getInstance(application).scoreDao
 
         viewModelFactory = QuizViewModelFactory(userDao, scoreDao, application)
 

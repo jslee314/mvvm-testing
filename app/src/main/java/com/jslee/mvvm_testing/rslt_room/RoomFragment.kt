@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.jslee.mvvm_testing.R
-import com.jslee.mvvm_testing.data.local.RoomDB
+import com.jslee.mvvm_testing.data.local.AppDatabase
 import com.jslee.mvvm_testing.databinding.FragmentRoomBinding
 
 
@@ -50,8 +50,8 @@ class RoomFragment : Fragment() {
     private fun setUpBinding(){
         val application = requireNotNull(this.activity).application
 
-        val userDao = RoomDB.getInstance(application).userDao
-        val scoreDao = RoomDB.getInstance(application).scoreDao
+        val userDao = AppDatabase.getInstance(application).userDao
+        val scoreDao = AppDatabase.getInstance(application).scoreDao
 
         viewModelFactory = RoomViewModelFactory(userDao, scoreDao, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(RoomViewModel::class.java)

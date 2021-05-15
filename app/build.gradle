@@ -48,8 +48,13 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // for material
+    implementation 'com.google.android.material:material:1.0.0'
+
+    // for constraint layout
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     // for android Testing
     testImplementation 'junit:junit:4.+'
@@ -93,11 +98,12 @@ dependencies {
     // moshi for parsing the JSON format
     def moshi_version = "1.9.3"
     implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
 
     // RecyclerView
     def version_recyclerview = "1.1.0"
     implementation "androidx.recyclerview:recyclerview:$version_recyclerview"
-
 
     // glide for images
     implementation 'com.github.bumptech.glide:glide:4.12.0'

@@ -8,9 +8,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.jslee.mvvm_testing.R
 import com.jslee.mvvm_testing.databinding.FragmentNetworkBinding
-import com.jslee.mvvm_testing.util.retrofit.MarsApiFilter
+import com.jslee.mvvm_testing.data.GroundApiFilter
 
 class NetworkFragment : Fragment() {
+
+
     private lateinit var binding: FragmentNetworkBinding
     private val viewModel: NetworkViewModel by lazy {
         ViewModelProvider(this).get(NetworkViewModel::class.java)
@@ -79,9 +81,9 @@ class NetworkFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         viewModel.updateFilter(
             when (item.itemId) {
-                R.id.show_rent_menu -> MarsApiFilter.SHOW_RENT
-                R.id.show_buy_menu -> MarsApiFilter.SHOW_BUY
-                else -> MarsApiFilter.SHOW_ALL
+                R.id.show_rent_menu -> GroundApiFilter.SHOW_RENT
+                R.id.show_buy_menu -> GroundApiFilter.SHOW_BUY
+                else -> GroundApiFilter.SHOW_ALL
             }
         )
         return true
