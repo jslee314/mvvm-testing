@@ -124,7 +124,11 @@
 --------------------------------------------------------------------------------------------------------
 # ANDROID FOR TESTING
 
-#### 1. ViewModel 단위 Testing
+#### 1. 일반 클래스 Unit Testing(단위 테스트)
+
+
+
+#### 2. ViewModel-LiveData Unit Testing(단위 테스트)
 
 
 #### 2. Repository 단위 Testing
