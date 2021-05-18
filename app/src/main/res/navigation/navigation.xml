@@ -58,7 +58,8 @@
     <fragment
         android:id="@+id/networkDetailFragment"
         android:name="com.jslee.mvvm_testing.rslt_network_detail.NetworkDetailFragment"
-        android:label="NetworkDetailFragment">
+        android:label="NetworkDetailFragment"
+        tools:layout="@layout/fragment_netwrok_detail">
         <argument
             android:name="selectedProperty"
             app:argType="com.jslee.mvvm_testing.data.remote.GroundProperty" />
