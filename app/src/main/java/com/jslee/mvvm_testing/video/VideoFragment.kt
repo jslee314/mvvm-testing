@@ -1,5 +1,6 @@
 package com.jslee.mvvm_testing.video
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,21 +9,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.jslee.mvvm_testing.MyApplication
 import com.jslee.mvvm_testing.R
 import com.jslee.mvvm_testing.data.vo.DevByteVideo
 import com.jslee.mvvm_testing.databinding.FragmentVideoBinding
+import com.jslee.mvvm_testing.home.HomeViewModel
 import com.jslee.mvvm_testing.rslt_network_detail.NetworkDetailViewModel
 import com.jslee.mvvm_testing.rslt_network_detail.NetworkDetailViewModelFactory
+import javax.inject.Inject
 
 
 class VideoFragment : Fragment() {
     private lateinit var binding : FragmentVideoBinding
-    private lateinit var viewModel: VideoViewModel
-    private lateinit var viewModelFactory: VideoViewModelFactory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel by viewModels<VideoViewModel> { viewModelFactory }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApplication)
+            .appComponent.inject(this)
+    }
 
     private var videoAdapter: VideoAdapter? = null
 
@@ -38,9 +50,6 @@ class VideoFragment : Fragment() {
     }
 
     private fun setUpBinding(){
-        val application = requireNotNull(this.activity).application
-        viewModelFactory = VideoViewModelFactory(application)
-        viewModel =  ViewModelProvider(this, viewModelFactory).get(VideoViewModel::class.java)
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel

@@ -4,13 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jslee.mvvm_testing.data.AppRepository
 import com.jslee.mvvm_testing.data.remote.GroundProperty
 import com.jslee.mvvm_testing.data.GroundApiFilter
 import com.jslee.mvvm_testing.data.vo.retrofitCallStatus
 import com.jslee.mvvm_testing.util.api.GroundApi
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NetworkViewModel : ViewModel() {
+class NetworkViewModel  @Inject constructor(
+    private val repository: AppRepository
+) : ViewModel() {
 
     private val _status = MutableLiveData<retrofitCallStatus>() // 가장 최근 response를 저장하는 "내부" MutableLiveData
     val status: LiveData<retrofitCallStatus>  // "외부 불변" LiveData

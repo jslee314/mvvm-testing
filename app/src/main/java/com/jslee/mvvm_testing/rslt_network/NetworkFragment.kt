@@ -1,27 +1,36 @@
 package com.jslee.mvvm_testing.rslt_network
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.jslee.mvvm_testing.MyApplication
 import com.jslee.mvvm_testing.R
 import com.jslee.mvvm_testing.databinding.FragmentNetworkBinding
 import com.jslee.mvvm_testing.data.GroundApiFilter
+import com.jslee.mvvm_testing.home.HomeViewModel
+import javax.inject.Inject
 
 class NetworkFragment : Fragment() {
 
-
     private lateinit var binding: FragmentNetworkBinding
-    private val viewModel: NetworkViewModel by lazy {
-        ViewModelProvider(this).get(NetworkViewModel::class.java)
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel by viewModels<NetworkViewModel> { viewModelFactory }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApplication)
+            .appComponent.inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-//        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_network,container,false)
         binding = FragmentNetworkBinding.inflate(inflater)
 
         setUpBinding()

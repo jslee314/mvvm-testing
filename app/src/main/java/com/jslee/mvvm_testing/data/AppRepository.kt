@@ -1,51 +1,46 @@
 package com.jslee.mvvm_testing.data
 
-import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
-import com.jslee.mvvm_testing.data.converter.asDatabaseModel
-import com.jslee.mvvm_testing.data.converter.asDomainModel
-import com.jslee.mvvm_testing.data.dataSource.AppDataSource
-import com.jslee.mvvm_testing.data.dataSource.LocalDataSource
-import com.jslee.mvvm_testing.data.dataSource.RemoteDataSource
-import com.jslee.mvvm_testing.data.local.AppDatabase
+import com.jslee.mvvm_testing.data.local.entity.Score
+import com.jslee.mvvm_testing.data.local.entity.User
 import com.jslee.mvvm_testing.data.vo.DevByteVideo
-import com.jslee.mvvm_testing.util.api.VideoApi
+import com.jslee.mvvm_testing.di.annotation.LocalDataSourceAnnotation
+import com.jslee.mvvm_testing.di.annotation.RemoteDataSourceAnnotation
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 /**
  * 네트워크 결과를 가져오고,  데이터베이스를 최신 상태로 유지하는 로직 구현*/
-class AppRepository private constructor(application: Application) {
+class AppRepository @Inject constructor(
+    @RemoteDataSourceAnnotation private var remoteDataSource: AppDataSource,
+    @LocalDataSourceAnnotation private var localDataSource: AppDataSource,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO) {
 
-    private var remoteDataSource: AppDataSource
-    private var localDataSource: AppDataSource
-    private var database: AppDatabase
-
-
-    companion object {
-        @Volatile
-        private var INSTANCE: AppRepository? = null
-
-        fun getRepository(app: Application): AppRepository {
-            return INSTANCE ?: synchronized(this) {
-                AppRepository(app).also {
-                    INSTANCE = it
-                }
-            }
-        }
-    }
-    init {
-        database = AppDatabase.getInstance(application)
-
-        remoteDataSource = RemoteDataSource
-        localDataSource = LocalDataSource(database.scoreDao, database.userDao, database.videoDao)
+    suspend fun selectLatestUser(): User? {
+        val user: User? = localDataSource.selectLatestUser()
+        return user
     }
 
+    suspend fun insertUser(user: User)  {
+        localDataSource.insertUser(user)
+    }
 
-    val videos: LiveData<List<DevByteVideo>> = Transformations.map(database.videoDao.getVideos()) {
-        it.asDomainModel()
+    suspend fun deleteUser(){
+        localDataSource.deleteUser()
+    }
+
+    suspend fun insertScore(score: Score) {
+        localDataSource.insertScore(score)
+    }
+
+    suspend fun selectLatestScore(): Score? {
+        return localDataSource.selectLatestScore()
+    }
+
+    suspend fun getVideos(): LiveData<List<DevByteVideo>> {
+        return localDataSource.getVideos()
     }
 
 
@@ -60,10 +55,9 @@ class AppRepository private constructor(application: Application) {
      *
      */
     suspend fun refreshVideos() {
-        withContext(Dispatchers.IO) {
-            val playlist = VideoApi.devbytes.getPlaylist()
 
-            database.videoDao.insertAll(playlist.asDatabaseModel())
+        withContext(Dispatchers.IO) {
+            localDataSource.insertAll()
         }
     }
 

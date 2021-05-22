@@ -1,22 +1,21 @@
 package com.jslee.mvvm_testing.video
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.jslee.mvvm_testing.data.AppRepository
+import com.jslee.mvvm_testing.data.local.entity.Score
+import com.jslee.mvvm_testing.data.vo.DevByteVideo
 import kotlinx.coroutines.launch
 import java.io.IOException
+import javax.inject.Inject
 
-class VideoViewModel (application: Application) : AndroidViewModel(application) {
-    /**
-     * The data source this ViewModel will fetch results from. */
-    private val repository = AppRepository.getRepository(application)
+class VideoViewModel @Inject constructor(
+    private val repository: AppRepository
+) : ViewModel() {
 
     /**
      * A playlist of videos displayed on the screen. */
-    val playlist = repository.videos
+    lateinit var playlist:LiveData<List<DevByteVideo>>
 
     /**
      * Event triggered for network error */
@@ -33,6 +32,7 @@ class VideoViewModel (application: Application) : AndroidViewModel(application) 
 
     init {
         refreshDataFromRepository()
+        getPlaylistFromRoomDB()
     }
 
     /**
@@ -57,6 +57,22 @@ class VideoViewModel (application: Application) : AndroidViewModel(application) 
      * Resets the network error flag. */
     fun onNetworkErrorShown() {
         _isNetworkErrorShown.value = true
+    }
+
+    /**
+     *  viewModelScope 사용 함수들     */
+    fun getPlaylistFromRoomDB(){
+        viewModelScope.launch {
+            playlist = getPlaylist()
+        }
+    }
+    /**
+     *  DB에 데이터 삽입 삭제 등과 관련된 함수들
+     *  이 함수들은 suspend 함수들로
+     *  코틀린을 사용해서 비동기 처리를 함*/
+    private suspend fun getPlaylist(): LiveData<List<DevByteVideo>> {
+        val videos = repository.getVideos()
+        return videos
     }
 
 

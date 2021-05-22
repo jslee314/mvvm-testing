@@ -1,24 +1,22 @@
 package com.jslee.mvvm_testing.home
 
-import android.app.Application
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
-import com.jslee.mvvm_testing.data.local.dao.ScoreDao
-import com.jslee.mvvm_testing.data.local.dao.UserDao
+import com.jslee.mvvm_testing.data.AppRepository
 import com.jslee.mvvm_testing.data.local.entity.User
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(val userDataSource: UserDao,
-                    val scoreDataSource: ScoreDao,
-                    application: Application) : AndroidViewModel(application) {
+class HomeViewModel @Inject constructor(
+    private val repository: AppRepository
+) : ViewModel() {
 
     /**
      *  user 엔티티 데이터 **/
     var user = MutableLiveData<User?>()
 
-    var mUser: User =
-        User()
+    var mUser: User = User()
 
     /**
      * 로그인 버튼 클릭여부를 담고 있는 LiveData (캡슐화) **/
@@ -36,6 +34,10 @@ class HomeViewModel(val userDataSource: UserDao,
     /**
      * HomeViewModel 객체 생성시 수행되는 함수 */
     init {
+        start()
+    }
+    fun start() {
+
     }
 
 
@@ -75,9 +77,7 @@ class HomeViewModel(val userDataSource: UserDao,
     /**
      *  버튼 클릭 시 수행되는 함수들     */
     fun onClickedLoginBtn(){
-
         _eventClickLogin.value = true
-
 
     }
 
@@ -116,17 +116,17 @@ class HomeViewModel(val userDataSource: UserDao,
      *  코틀린을 사용해서 비동기 처리를 함*/
 
     private suspend fun getUser(): User?{
-        val user: User? = userDataSource.selectLatestUser()
+        val user: User? = repository.selectLatestUser()
         return user
     }
 
     private suspend fun insert(user: User) {
-        userDataSource.insertUser(user)
+        repository.insertUser(user)
     }
 
 
     private suspend fun clear() {
-        userDataSource.deleteUser()
+        repository.deleteUser()
     }
 
 }

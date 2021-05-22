@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.jslee.mvvm_testing.R
 import com.jslee.mvvm_testing.databinding.FragmentNetwrokDetailBinding
+import javax.inject.Inject
 
 class NetworkDetailFragment : Fragment(){
 

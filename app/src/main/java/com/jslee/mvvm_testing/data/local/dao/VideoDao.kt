@@ -22,8 +22,5 @@ interface VideoDao {
      * 간단하게 비디오 항목이 이미 데이터베이스에있는 경우 데이터베이스 항목을 덮어 쓴다.
      * 이를 수행하려면 onConflict 인수를 사용하여 충돌 전략을 REPLACE로 설정하면 된다.*/
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll( videos: List<Video>)
-
-
-
+    fun insertAll(videos: List<Video>)
 }

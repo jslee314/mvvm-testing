@@ -1,23 +1,36 @@
 package com.jslee.mvvm_testing.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
+import com.jslee.mvvm_testing.MyApplication
 import com.jslee.mvvm_testing.R
 import com.jslee.mvvm_testing.databinding.FragmentHomeBinding
-import com.jslee.mvvm_testing.data.local.AppDatabase
+import javax.inject.Inject
 
 class HomeFragment : Fragment() {
         private lateinit var binding :FragmentHomeBinding
-        private lateinit var viewModel: HomeViewModel
-        private lateinit var viewModelFactory: HomeViewModelFactory
 
+        // 지연 주입
+        @Inject
+        lateinit var viewModelFactory: ViewModelProvider.Factory
+
+        private val viewModel by viewModels<HomeViewModel> { viewModelFactory }
+
+        override fun onAttach(context: Context) {
+                super.onAttach(context)
+                // Ask Dagger to inject our dependencies
+                (requireActivity().application as MyApplication)
+                        .appComponent.inject(this)
+        }
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                   savedInstanceState: Bundle?): View? {
@@ -31,13 +44,6 @@ class HomeFragment : Fragment() {
         }
 
         private fun setUpBinding(){
-                val application = requireNotNull(this.activity).application
-
-                val userDao = AppDatabase.getInstance(application).userDao
-                val scoreDao = AppDatabase.getInstance(application).scoreDao
-
-                viewModelFactory = HomeViewModelFactory(userDao, scoreDao, application)
-                viewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
 
                 // databinding을 위한 viewmodel 셋팅 -VieWModel의 모든 데이터에 바인딩 된 레이아웃 액세스를 허용
                 binding.viewModel = viewModel

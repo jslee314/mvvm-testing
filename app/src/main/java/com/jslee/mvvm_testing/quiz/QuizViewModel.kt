@@ -3,14 +3,16 @@ package com.jslee.mvvm_testing.quiz
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
+import com.jslee.mvvm_testing.data.AppRepository
 import com.jslee.mvvm_testing.data.local.dao.ScoreDao
 import com.jslee.mvvm_testing.data.local.dao.UserDao
 import com.jslee.mvvm_testing.data.local.entity.Score
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class QuizViewModel(val userDataSource: UserDao,
-                    val scoreDataSource: ScoreDao,
-                    application: Application) : AndroidViewModel(application) {
+class QuizViewModel @Inject constructor(
+    private val repository: AppRepository
+) : ViewModel() {
 
     /**
     * @내용 : 점수 (캡슐화)
@@ -77,6 +79,6 @@ class QuizViewModel(val userDataSource: UserDao,
      *  코틀린을 사용해서 비동기 처리를 함*/
 
     private suspend fun insert(score: Score) {
-        scoreDataSource.insertScore(score)
+        repository.insertScore(score)
     }
 }

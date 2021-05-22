@@ -2,10 +2,12 @@ package com.jslee.mvvm_testing.rslt_room
 
 import android.app.Application
 import androidx.lifecycle.*
+import com.jslee.mvvm_testing.data.AppRepository
 import com.jslee.mvvm_testing.data.local.dao.ScoreDao
 import com.jslee.mvvm_testing.data.local.dao.UserDao
 import com.jslee.mvvm_testing.data.local.entity.Score
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
 * @내용 : 네트워크 호출을 통해 정보를 얻는 기능 포함
@@ -13,9 +15,9 @@ import kotlinx.coroutines.launch
 * @최초작성일 : 2021-05-13 오후 1:27
 * @작성자 : 이재선
 **/
-class RoomViewModel(val userDataSource: UserDao,
-                    val scoreDataSource: ScoreDao,
-                    application: Application) : AndroidViewModel(application) {
+class RoomViewModel @Inject constructor(
+    private val repository: AppRepository
+) : ViewModel() {
 
 
     /**
@@ -67,7 +69,7 @@ class RoomViewModel(val userDataSource: UserDao,
      *  코틀린을 사용해서 비동기 처리를 함*/
 
     private suspend fun getScore(): Score?{
-        val score = scoreDataSource.selectLatestScore()
+        val score = repository.selectLatestScore()
         return score
     }
 
