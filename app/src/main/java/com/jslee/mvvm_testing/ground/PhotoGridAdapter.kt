@@ -1,4 +1,4 @@
-package com.jslee.mvvm_testing.rslt_network
+package com.jslee.mvvm_testing.ground
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

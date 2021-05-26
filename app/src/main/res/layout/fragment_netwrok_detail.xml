@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.jslee.mvvm_testing.rslt_network_detail.NetworkDetailViewModel" />
+            type="com.jslee.mvvm_testing.ground.detail.NetworkDetailViewModel" />
     </data>
 
     <ScrollView

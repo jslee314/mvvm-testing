@@ -1,4 +1,4 @@
-package com.jslee.mvvm_testing.rslt_network_detail
+package com.jslee.mvvm_testing.ground.detail
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

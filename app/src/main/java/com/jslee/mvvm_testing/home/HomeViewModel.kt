@@ -8,6 +8,10 @@ import com.jslee.mvvm_testing.data.local.entity.User
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * HomeViewModel의 주 생성자에 @Inject를 달아 의존성 주입 대상임을 Dagger에게 알림
+ * 주 생성자 반환 Type이 ViewModel 이기 때문에 Component에서 반환타입이 같음 메서드를 찾아서 주입해줌
+ */
 class HomeViewModel @Inject constructor(
     private val repository: AppRepository
 ) : ViewModel() {

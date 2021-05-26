@@ -18,9 +18,6 @@ import com.jslee.mvvm_testing.MyApplication
 import com.jslee.mvvm_testing.R
 import com.jslee.mvvm_testing.data.vo.DevByteVideo
 import com.jslee.mvvm_testing.databinding.FragmentVideoBinding
-import com.jslee.mvvm_testing.home.HomeViewModel
-import com.jslee.mvvm_testing.rslt_network_detail.NetworkDetailViewModel
-import com.jslee.mvvm_testing.rslt_network_detail.NetworkDetailViewModelFactory
 import javax.inject.Inject
 
 

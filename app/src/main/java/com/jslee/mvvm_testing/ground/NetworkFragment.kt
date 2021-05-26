@@ -1,4 +1,4 @@
-package com.jslee.mvvm_testing.rslt_network
+package com.jslee.mvvm_testing.ground
 
 import android.content.Context
 import android.os.Bundle
@@ -12,7 +12,6 @@ import com.jslee.mvvm_testing.MyApplication
 import com.jslee.mvvm_testing.R
 import com.jslee.mvvm_testing.databinding.FragmentNetworkBinding
 import com.jslee.mvvm_testing.data.GroundApiFilter
-import com.jslee.mvvm_testing.home.HomeViewModel
 import javax.inject.Inject
 
 class NetworkFragment : Fragment() {

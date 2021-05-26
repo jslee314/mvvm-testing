@@ -23,7 +23,7 @@ class HomeFragment : Fragment() {
         @Inject
         lateinit var viewModelFactory: ViewModelProvider.Factory
 
-        private val viewModel by viewModels<HomeViewModel> { viewModelFactory }
+        private val homeViewModel by viewModels<HomeViewModel> { viewModelFactory } // by viewModels()을 사용하여 viewModel 지연생성
 
         override fun onAttach(context: Context) {
                 super.onAttach(context)
@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
         private fun setUpBinding(){
 
                 // databinding을 위한 viewmodel 셋팅 -VieWModel의 모든 데이터에 바인딩 된 레이아웃 액세스를 허용
-                binding.viewModel = viewModel
+                binding.viewModel = homeViewModel
 
                 //binding의 lifecycle owner로 fragment view를 지정 -> 이로써,,바인딩이 LiveData 업데이트를 관찰 할 수 있도함
                 binding.setLifecycleOwner(this)
@@ -61,18 +61,18 @@ class HomeFragment : Fragment() {
         private fun setUpObserver(){
 
                 /**  eventClickStart 라이브 데이터를 observing 함 */
-                viewModel.eventClickLogin.observe(viewLifecycleOwner, Observer<Boolean> { isClicked ->
+                homeViewModel.eventClickLogin.observe(viewLifecycleOwner, Observer<Boolean> { isClicked ->
                         if(isClicked){
-                                viewModel.mUser.userName = binding.editTextTextUserName.text.toString()
-                                viewModel.mUser.userAge = binding.editTextUserAge.text.toString()
+                                homeViewModel.mUser.userName = binding.editTextTextUserName.text.toString()
+                                homeViewModel.mUser.userAge = binding.editTextUserAge.text.toString()
                                 binding.invalidateAll()
-                                viewModel.setUserToRoomDB()
+                                homeViewModel.setUserToRoomDB()
 
                         }
                 })
 
                 /**  eventClickStart 라이브 데이터를 observing 함 */
-                viewModel.eventClickStart.observe(viewLifecycleOwner, Observer<Boolean> { isClicked ->
+                homeViewModel.eventClickStart.observe(viewLifecycleOwner, Observer<Boolean> { isClicked ->
                         if(isClicked){
                                 NavHostFragment.findNavController(this).navigate(
                                         HomeFragmentDirections.actionHomeFragmentToQuizFragment())
