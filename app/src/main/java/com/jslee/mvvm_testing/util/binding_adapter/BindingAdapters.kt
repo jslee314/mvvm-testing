@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.jslee.mvvm_testing.R
 import com.jslee.mvvm_testing.data.remote.GroundProperty
-import com.jslee.mvvm_testing.rslt_network.PhotoGridAdapter
+import com.jslee.mvvm_testing.ground.PhotoGridAdapter
 import com.jslee.mvvm_testing.data.vo.retrofitCallStatus
 
 /**

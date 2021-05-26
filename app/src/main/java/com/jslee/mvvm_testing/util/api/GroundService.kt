@@ -1,10 +1,8 @@
 package com.jslee.mvvm_testing.util.api
 
-import com.jslee.mvvm_testing.data.converter.NetworkVideoContainer
 import com.jslee.mvvm_testing.data.remote.GroundProperty
 import retrofit2.http.GET
 import retrofit2.http.Query
-
 
 /**
  * https://android-kotlin-fun-mars-server.appspot.com/realestate
@@ -16,13 +14,8 @@ import retrofit2.http.Query
  * {"price":500000,"id":"424910","type":"buy","img_src":"http://mars.jpl.nasa.gov/msl-raw-images/msss/01000/mcam/1000ML0044631280305225E03_DXXX.jpg"},
  * {"price":450000,"id":"424911","type":"buy","img_src":"http://mars.jpl.nasa.gov/msl-raw-images/msss/01000/mcam/1000MR0044631270503687E03_DXXX.jpg"},
  *
- *
- *
  */
-
-
-
-interface RetrofitService {
+interface GroundService {
     /**
      * Coroutine 범위에있는 경우(suspend 함수이므로..)
      * await()로 가져올 수있는 [GroundProperty]의 Coroutine [List]를 반환합니다.
@@ -38,7 +31,6 @@ interface RetrofitService {
 
 
 
-    @GET("devbytes")
-    suspend fun getPlaylist(): NetworkVideoContainer
+
 
 }

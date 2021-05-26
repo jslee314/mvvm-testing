@@ -33,7 +33,7 @@ private val retrofit = Retrofit.Builder()
  */
 object GroundApi {
 
-    val retrofitService : RetrofitService by lazy {
-            retrofit.create(RetrofitService::class.java)
+    val retrofitService : GroundService by lazy {
+            retrofit.create(GroundService::class.java)
     }
 }
