@@ -12,7 +12,7 @@ import com.jslee.mvvm_testing.util.api.GroundApi
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class NetworkViewModel  @Inject constructor(
+class GroundViewModel  @Inject constructor(
     private val repository: AppRepository
 ) : ViewModel() {
 

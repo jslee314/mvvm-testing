@@ -10,16 +10,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.jslee.mvvm_testing.MyApplication
 import com.jslee.mvvm_testing.R
-import com.jslee.mvvm_testing.databinding.FragmentNetworkBinding
 import com.jslee.mvvm_testing.data.GroundApiFilter
+import com.jslee.mvvm_testing.databinding.FragmentGroundBinding
 import javax.inject.Inject
 
-class NetworkFragment : Fragment() {
+class GroundFragment : Fragment() {
 
-    private lateinit var binding: FragmentNetworkBinding
+    private lateinit var binding: FragmentGroundBinding
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel by viewModels<NetworkViewModel> { viewModelFactory }
+    private val viewModel by viewModels<GroundViewModel> { viewModelFactory }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -30,7 +30,7 @@ class NetworkFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        binding = FragmentNetworkBinding.inflate(inflater)
+        binding = FragmentGroundBinding.inflate(inflater)
 
         setUpBinding()
         setUpView()
@@ -58,21 +58,14 @@ class NetworkFragment : Fragment() {
     }
 
     private fun setUpObserver() {
-        // button에 navigaion.xml에서 만든 액션 추가
-//        binding.failBtn.setOnClickListener { view : View ->
-//            view.findNavController().navigate(R.id.action_networkFragment_to_quizFragment)
-//        }
 
         viewModel.navigateToSelectedProperty.observe(this, Observer {
             if ( null != it ) {
                 this.findNavController().navigate(
-                    NetworkFragmentDirections.actionNetworkFragmentToNetworkDetailFragment(it))
+                    GroundFragmentDirections.actionGroundFragmentToGroundDetailFragment(it))
                 viewModel.displayPropertyDetailsComplete()
             }
         })
-
-
-
     }
 
     /**

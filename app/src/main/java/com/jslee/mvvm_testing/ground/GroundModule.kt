@@ -6,9 +6,9 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class NetworkModule {
+abstract class GroundModule {
     @Binds
     @IntoMap
-    @ViewModelKey(NetworkViewModel::class)
-    abstract fun bindViewModel(viewmodel: NetworkViewModel): ViewModel
+    @ViewModelKey(GroundViewModel::class)
+    abstract fun bindViewModel(viewmodel: GroundViewModel): ViewModel
 }

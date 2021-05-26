@@ -5,12 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.jslee.mvvm_testing.data.remote.GroundProperty
 
-class NetworkDetailViewModelFactory (private val groundProperty: GroundProperty,
-                                     private val application: Application) : ViewModelProvider.Factory {
+class GroundDetailViewModelFactory (private val groundProperty: GroundProperty,
+                                    private val application: Application) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(NetworkDetailViewModel::class.java)) {
-            return NetworkDetailViewModel(
+        if (modelClass.isAssignableFrom(GroundDetailViewModel::class.java)) {
+            return GroundDetailViewModel(
                 groundProperty,
                 application
             ) as T

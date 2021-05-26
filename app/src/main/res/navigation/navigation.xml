@@ -6,21 +6,6 @@
     app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/quizFragment"
-        android:name="com.jslee.mvvm_testing.quiz.QuizFragment"
-        android:label="QuizFragment"
-        tools:layout="@layout/fragment_quiz">
-        <action
-            android:id="@+id/action_quizFragment_to_networkFragment"
-            app:destination="@id/networkFragment"
-            app:popUpTo="@id/quizFragment"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_quizFragment_to_successFragment"
-            app:destination="@id/roomFragment"
-            app:popUpTo="@id/roomFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/homeFragment"
         android:name="com.jslee.mvvm_testing.home.HomeFragment"
         android:label="HomeFragment"
@@ -29,40 +14,64 @@
             android:id="@+id/action_homeFragment_to_quizFragment"
             app:destination="@id/quizFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/roomFragment"
-        android:name="com.jslee.mvvm_testing.rslt_room.RoomFragment"
-        android:label="AnswerFragment"
-        tools:layout="@layout/fragment_room">
+        android:id="@+id/quizFragment"
+        android:name="com.jslee.mvvm_testing.quiz.QuizFragment"
+        android:label="QuizFragment"
+        tools:layout="@layout/fragment_quiz">
         <action
-            android:id="@+id/action_roomFragment_to_quizFragment"
-            app:destination="@id/quizFragment" />
-        <argument
-            android:name="score"
-            android:defaultValue="0"
-            app:argType="integer" />
-    </fragment>
-    <fragment
-        android:id="@+id/networkFragment"
-        android:name="com.jslee.mvvm_testing.ground.NetworkFragment"
-        android:label="NetworkFragment"
-        tools:layout="@layout/fragment_network">
+            android:id="@+id/action_quizFragment_to_groundFragment"
+            app:destination="@id/groundFragment"
+            app:popUpTo="@id/quizFragment"
+            app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_networkFragment_to_quizFragment"
-            app:destination="@id/quizFragment" />
-        <action
-            android:id="@+id/action_networkFragment_to_networkDetailFragment"
-            app:destination="@id/networkDetailFragment" />
+            android:id="@+id/action_quizFragment_to_personFragment"
+            app:destination="@id/peopleFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/networkDetailFragment"
-        android:name="com.jslee.mvvm_testing.ground.detail.NetworkDetailFragment"
-        android:label="NetworkDetailFragment"
-        tools:layout="@layout/fragment_netwrok_detail">
+        android:id="@+id/groundFragment"
+        android:name="com.jslee.mvvm_testing.ground.GroundFragment"
+        android:label="GroundFragment"
+        tools:layout="@layout/fragment_ground">
+        <action
+            android:id="@+id/action_groundFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+        <action
+            android:id="@+id/action_groundFragment_to_groundDetailFragment"
+            app:destination="@id/groundDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/groundDetailFragment"
+        android:name="com.jslee.mvvm_testing.ground.detail.GroundDetailFragment"
+        android:label="GroundDetailFragment"
+        tools:layout="@layout/fragment_ground_detail">
         <argument
             android:name="selectedProperty"
             app:argType="com.jslee.mvvm_testing.data.remote.GroundProperty" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/peopleFragment"
+        android:name="com.jslee.mvvm_testing.people.PeopleFragment"
+        android:label="PeopleFragment">
+        <action
+            android:id="@+id/action_peopleFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+        <action
+            android:id="@+id/action_peopleFragment_to_peopleDetailFragment"
+            app:destination="@id/peopleDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/peopleDetailFragment"
+        android:name="com.jslee.mvvm_testing.people.detail.PeopleDetailFragment"
+        android:label="PeopleDetailFragment" >
+        <argument
+            android:name="selectedPeople"
+            app:argType="com.jslee.mvvm_testing.data.remote.PeopleDetail" />
     </fragment>
 
     <fragment
@@ -76,6 +85,7 @@
         android:name="com.jslee.mvvm_testing.video.VideoFragment"
         android:label="VideoFragment"
         tools:layout="@layout/fragment_video"/>
+
 
 
 </navigation>

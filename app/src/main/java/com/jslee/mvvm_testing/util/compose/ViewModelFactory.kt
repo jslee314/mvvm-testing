@@ -1,4 +1,4 @@
-package com.jslee.mvvm_testing.util.factory
+package com.jslee.mvvm_testing.util.compose
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -8,17 +8,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.jslee.mvvm_testing.R
-import com.jslee.mvvm_testing.databinding.FragmentNetwrokDetailBinding
+import com.jslee.mvvm_testing.databinding.FragmentGroundDetailBinding
 
-class NetworkDetailFragment : Fragment(){
+class GroundDetailFragment : Fragment(){
 
-    private lateinit var binding : FragmentNetwrokDetailBinding
-    private lateinit var viewModel: NetworkDetailViewModel
-    private lateinit var viewModelFactory: NetworkDetailViewModelFactory
+    private lateinit var binding : FragmentGroundDetailBinding
+    private lateinit var viewModel: GroundDetailViewModel
+    private lateinit var viewModelFactory: GroundDetailViewModelFactory
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_netwrok_detail, container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_ground_detail, container,false)
         setUpBinding()
 
         return binding.root
@@ -27,16 +27,17 @@ class NetworkDetailFragment : Fragment(){
     private fun setUpBinding(){
         val application = requireNotNull(this.activity).application
 
-        val groundProperty = NetworkDetailFragmentArgs.fromBundle(
+        val groundProperty = GroundDetailFragmentArgs.fromBundle(
             arguments!!
         ).selectedProperty
+
         viewModelFactory =
-            NetworkDetailViewModelFactory(
+            GroundDetailViewModelFactory(
                 groundProperty,
                 application
             )
 
-        viewModel =  ViewModelProvider(this, viewModelFactory).get(NetworkDetailViewModel::class.java)
+        viewModel =  ViewModelProvider(this, viewModelFactory).get(GroundDetailViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 

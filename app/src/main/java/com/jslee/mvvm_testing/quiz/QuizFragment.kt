@@ -54,7 +54,7 @@ class QuizFragment : Fragment() {
         viewModel.eventToNetworkBtn.observe(viewLifecycleOwner, Observer<Boolean> { isClicked ->
             if(isClicked){
                 viewModel.insertToRoomDB()
-                var action = QuizFragmentDirections.actionQuizFragmentToNetworkFragment()
+                var action = QuizFragmentDirections.actionQuizFragmentToGroundFragment()
                 NavHostFragment.findNavController(this).navigate(action)
             }
         })
@@ -62,7 +62,7 @@ class QuizFragment : Fragment() {
         viewModel.eventClickToRoomBtn.observe(viewLifecycleOwner, Observer<Boolean> { isClicked ->
             if(isClicked){
                 viewModel.insertToRoomDB()
-                var action = QuizFragmentDirections.actionQuizFragmentToSuccessFragment()
+                var action =  QuizFragmentDirections.actionQuizFragmentToPersonFragment()
                 NavHostFragment.findNavController(this).navigate(action)
             }
         })

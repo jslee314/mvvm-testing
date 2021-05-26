@@ -5,9 +5,10 @@ import com.jslee.mvvm_testing.home.HomeFragment
 import com.jslee.mvvm_testing.home.HomeModule
 import com.jslee.mvvm_testing.quiz.QuizFragment
 import com.jslee.mvvm_testing.quiz.QuizModule
-import com.jslee.mvvm_testing.ground.NetworkFragment
-import com.jslee.mvvm_testing.ground.NetworkModule
-import com.jslee.mvvm_testing.rslt_room.RoomFragment
+import com.jslee.mvvm_testing.ground.GroundFragment
+import com.jslee.mvvm_testing.ground.GroundModule
+import com.jslee.mvvm_testing.people.PeopleFragment
+import com.jslee.mvvm_testing.people.PeopleModule
 import com.jslee.mvvm_testing.video.VideoFragment
 import com.jslee.mvvm_testing.video.VideoModule
 import dagger.BindsInstance
@@ -40,7 +41,8 @@ import javax.inject.Singleton
 
         HomeModule::class, // HomeViewModel -> ViewModel
         QuizModule::class,
-        NetworkModule::class,
+        GroundModule::class,
+        PeopleModule::class,
         VideoModule::class
     ])
 interface AppComponent {
@@ -55,8 +57,8 @@ interface AppComponent {
     //                             인자로 받은 HomeFragment 내부 멤버필드에 의존성 주입
     fun inject(fragment: HomeFragment)
     fun inject(fragment: QuizFragment)
-    fun inject(fragment: RoomFragment)
-    fun inject(fragment: NetworkFragment)
+    fun inject(fragment: GroundFragment)
+    fun inject(fragment: PeopleFragment)
     fun inject(fragment: VideoFragment)
 
 //    val repository: AppRepository

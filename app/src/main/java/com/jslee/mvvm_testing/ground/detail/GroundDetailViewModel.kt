@@ -8,8 +8,8 @@ import androidx.lifecycle.Transformations
 import com.jslee.mvvm_testing.R
 import com.jslee.mvvm_testing.data.remote.GroundProperty
 
-class NetworkDetailViewModel(groundProperty: GroundProperty,
-                             app: Application) : AndroidViewModel(app) {
+class GroundDetailViewModel(groundProperty: GroundProperty,
+                            app: Application) : AndroidViewModel(app) {
 
     private val _selectedProperty = MutableLiveData<GroundProperty>()
     val selectedProperty: LiveData<GroundProperty>

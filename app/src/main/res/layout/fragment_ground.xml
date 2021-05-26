@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.jslee.mvvm_testing.ground.NetworkViewModel" />
+            type="com.jslee.mvvm_testing.ground.GroundViewModel" />
 
     </data>
 
